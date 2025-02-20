@@ -1,10 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!-- Blues -->
+    <color name="background">#00163D</color>
+    <color name="primary">#274479</color>
+    <color name="secondary">#7996DE</color>
+    <color name="tertiary">#556B9D</color>
+
+    <!-- Accents -->
+    <color name="gold_accent">#C2995A</color>
+    <color name="orange_accent">#CE803C</color>
+
+    <!-- Utility -->
+    <color name="ui_selection">#4DB1F9</color>
+    <color name="text">#F5F5F5</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+
+    <!-- Status Colors -->
+    <color name="positive">#80D193</color>
+    <color name="neutral">#E4DC7D</color>
+    <color name="negative">#D18082</color>
+
+    <!-- Gradient (Top to Bottom) -->
+    <color name="gradient_start">#0D00163D</color> <!-- 5% of 00163D -->
+    <color name="gradient_end">#00163D</color> <!-- 100% of 00163D -->
 </resources>
