@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Dissonance</string>
+    <string name="test">test text</string>
 </resources>

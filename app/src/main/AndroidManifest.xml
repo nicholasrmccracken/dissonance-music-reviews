@@ -24,6 +24,13 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".screens.ProfileScreen"
+            android:exported="false"
+            android:label="Profile"
+            android:theme="@style/Theme.Dissonance">
+        </activity>
+
     </application>
 
 </manifest>
