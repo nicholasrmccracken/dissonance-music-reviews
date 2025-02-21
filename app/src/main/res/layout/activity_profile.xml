@@ -159,7 +159,7 @@
 
                     <ImageView
                         android:id="@+id/imageView8"
-                        android:layout_width="299dp"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:src="@drawable/the_rolling_stones_sticky_fingers"
@@ -167,7 +167,7 @@
 
                     <ImageView
                         android:id="@+id/imageView9"
-                        android:layout_width="289dp"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:src="@drawable/illmaticnas"
@@ -175,7 +175,7 @@
 
                     <ImageView
                         android:id="@+id/imageView10"
-                        android:layout_width="291dp"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:src="@drawable/tame_impala_currents"
@@ -183,7 +183,7 @@
 
                     <ImageView
                         android:id="@+id/imageView11"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:src="@drawable/dark_side_of_the_moon"
@@ -330,12 +330,12 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button6"
-                android:layout_width="143dp"
+                android:id="@+id/spotifyConnect"
+                android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/profile_buttons"
-                android:text="Connect Spotify" />
+                android:text="Connect Spotify"
+                android:background="@drawable/spotify_button" />
 
             <Button
                 android:id="@+id/editProfileBtn"

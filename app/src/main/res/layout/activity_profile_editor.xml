@@ -82,5 +82,62 @@
             android:layout_height="3dp"
             android:background="#898888" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/editEmailText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:text="Change email: "
+                android:textColor="#FFFFFF" />
+
+            <EditText
+                android:id="@+id/editEmailBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:autofillHints="Enter new name"
+                android:background="@drawable/profile_buttons"
+                android:fontFamily="monospace"
+                android:hint="Enter new email"
+                android:inputType="textPersonName" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view5"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="#898888" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="84dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/editEmailText2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:text="Change password: "
+                android:textColor="#FFFFFF" />
+
+            <EditText
+                android:id="@+id/editEmailBox3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:autofillHints="Enter new name"
+                android:background="@drawable/profile_buttons"
+                android:fontFamily="monospace"
+                android:hint="Enter new password"
+                android:inputType="textPersonName" />
+        </LinearLayout>
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
