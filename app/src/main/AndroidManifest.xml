@@ -31,6 +31,13 @@
             android:theme="@style/Theme.Dissonance">
         </activity>
 
+        <activity
+            android:name=".screens.ProfileEditScreen"
+            android:exported="false"
+            android:label="Profile"
+            android:theme="@style/Theme.Dissonance">
+        </activity>
+
     </application>
 
 </manifest>

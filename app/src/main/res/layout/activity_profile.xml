@@ -5,7 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="568dp"
+            app:srcCompat="@drawable/banner_crescent" />
+    </FrameLayout>
+
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="407dp"
         android:layout_height="730dp"
         android:orientation="vertical"
@@ -25,14 +37,19 @@
                 <ImageView
                     android:id="@+id/imageView5"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_launcher_foreground" />
+                    android:layout_height="127dp"
+                    android:background="@drawable/profile_buttons"
+                    android:scaleType="centerInside"
+                    android:src="@android:drawable/sym_def_app_icon"
+                    android:visibility="visible" />
 
                 <TextView
                     android:id="@+id/textView4"
                     android:layout_width="match_parent"
                     android:layout_height="49dp"
-                    android:text="TextView"
+                    android:fontFamily="monospace"
+                    android:gravity="center|top"
+                    android:text="Username"
                     android:textColor="#FFFFFF" />
             </LinearLayout>
 
@@ -48,26 +65,32 @@
 
                     <TextView
                         android:id="@+id/textView8"
-                        android:layout_width="wrap_content"
+                        android:layout_width="36dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="TextView"
+                        android:fontFamily="monospace"
+                        android:gravity="bottom|center"
+                        android:text="12"
                         android:textColor="#FFFFFF" />
 
                     <TextView
                         android:id="@+id/textView9"
-                        android:layout_width="wrap_content"
+                        android:layout_width="36dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="TextView"
+                        android:fontFamily="monospace"
+                        android:gravity="bottom|center"
+                        android:text="15"
                         android:textColor="#FFFFFF" />
 
                     <TextView
                         android:id="@+id/textView10"
-                        android:layout_width="wrap_content"
+                        android:layout_width="38dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="TextView"
+                        android:fontFamily="monospace"
+                        android:gravity="bottom|center"
+                        android:text="531"
                         android:textColor="#FFFFFF" />
                 </LinearLayout>
 
@@ -81,7 +104,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="TextView"
+                        android:fontFamily="monospace"
+                        android:gravity="center|top"
+                        android:text="Ratings"
                         android:textColor="#FFFFFF" />
 
                     <TextView
@@ -89,7 +114,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="TextView"
+                        android:fontFamily="monospace"
+                        android:gravity="center|top"
+                        android:text="Reviews"
                         android:textColor="#FAFAFA" />
 
                     <TextView
@@ -97,7 +124,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="TextView"
+                        android:gravity="center|top"
+                        android:text="Followers"
                         android:textColor="#FFFFFF" />
                 </LinearLayout>
             </LinearLayout>
@@ -105,16 +133,19 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="228dp"
-            android:background="#939CFF"
+            android:layout_height="204dp"
+            android:background="#0029349B"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textView11"
                 android:layout_width="match_parent"
                 android:layout_height="54dp"
+                android:fontFamily="monospace"
+                android:gravity="center"
                 android:text="Top Four"
-                android:textColor="#FFFFFF" />
+                android:textColor="#FFFFFF"
+                android:textSize="20sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -128,31 +159,35 @@
 
                     <ImageView
                         android:id="@+id/imageView8"
-                        android:layout_width="wrap_content"
+                        android:layout_width="299dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        tools:srcCompat="@tools:sample/avatars" />
+                        android:src="@drawable/the_rolling_stones_sticky_fingers"
+                        android:visibility="visible" />
 
                     <ImageView
                         android:id="@+id/imageView9"
-                        android:layout_width="wrap_content"
+                        android:layout_width="289dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        tools:srcCompat="@tools:sample/avatars" />
+                        android:src="@drawable/illmaticnas"
+                        android:visibility="visible" />
 
                     <ImageView
                         android:id="@+id/imageView10"
-                        android:layout_width="wrap_content"
+                        android:layout_width="291dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        tools:srcCompat="@tools:sample/avatars" />
+                        android:src="@drawable/tame_impala_currents"
+                        android:visibility="visible" />
 
                     <ImageView
                         android:id="@+id/imageView11"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        tools:srcCompat="@tools:sample/avatars" />
+                        android:src="@drawable/dark_side_of_the_moon"
+                        android:visibility="visible" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -162,32 +197,51 @@
 
                     <TextView
                         android:id="@+id/textView12"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="TextView" />
+                        android:ellipsize="end"
+                        android:fontFamily="monospace"
+                        android:gravity="center"
+                        android:text="Sticky Fingers\n[Rolling Stones]"
+                        android:textColor="#FFFFFF"
+                        android:textSize="10sp" />
 
                     <TextView
                         android:id="@+id/textView13"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="TextView" />
+                        android:fontFamily="monospace"
+                        android:gravity="center"
+                        android:text="Illmatic\n[Nas]"
+                        android:textColor="#FFFFFF"
+                        android:textSize="10sp" />
 
                     <TextView
                         android:id="@+id/textView14"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="TextView" />
+                        android:fontFamily="monospace"
+                        android:gravity="center"
+                        android:text="Currents\n[Tame Impala]"
+                        android:textColor="#FBFBFB"
+                        android:textSize="10sp" />
 
                     <TextView
                         android:id="@+id/textView15"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="TextView" />
+                        android:ellipsize="end"
+                        android:fontFamily="monospace"
+                        android:gravity="center"
+                        android:text="Dark Side of The Moon\n[Pink Floyd]"
+                        android:textColor="#F8F8F8"
+                        android:textSize="10sp" />
                 </LinearLayout>
+
             </LinearLayout>
         </LinearLayout>
 
@@ -199,21 +253,39 @@
             <TextView
                 android:id="@+id/textView16"
                 android:layout_width="match_parent"
-                android:layout_height="33dp"
+                android:layout_height="45dp"
+                android:fontFamily="monospace"
+                android:gravity="center|left"
                 android:text="Recent Activity"
-                android:textColor="#F6F6F6" />
+                android:textColor="#F6F6F6"
+                android:textSize="18sp" />
+
+            <View
+                android:id="@+id/view8"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="#D4D7F2" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="12dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="202dp"
+                android:layout_height="184dp"
                 android:orientation="horizontal">
 
-                <ImageButton
-                    android:id="@+id/imageButton4"
-                    android:layout_width="343dp"
-                    android:layout_height="wrap_content"
+                <Space
+                    android:layout_width="184dp"
+                    android:layout_height="126dp"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="126dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/ic_launcher_foreground" />
+                    app:srcCompat="@drawable/the_rolling_stones_sticky_fingers" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -224,20 +296,29 @@
                     <TextView
                         android:id="@+id/textView17"
                         android:layout_width="match_parent"
-                        android:layout_height="53dp"
-                        android:text="TextView" />
+                        android:layout_height="wrap_content"
+                        android:fontFamily="monospace"
+                        android:text="Sticky Fingers"
+                        android:textColor="#FDFDFD"
+                        android:textSize="23sp" />
 
                     <TextView
                         android:id="@+id/textView18"
                         android:layout_width="match_parent"
-                        android:layout_height="46dp"
-                        android:text="TextView" />
+                        android:layout_height="wrap_content"
+                        android:fontFamily="monospace"
+                        android:text="The Rolling Stones"
+                        android:textColor="#FAFAFA" />
 
                     <TextView
                         android:id="@+id/textView19"
                         android:layout_width="match_parent"
-                        android:layout_height="67dp"
-                        android:text="TextView" />
+                        android:layout_height="68dp"
+                        android:fontFamily="monospace"
+                        android:gravity="center"
+                        android:text="&quot;Sticky Fingers&quot; by The Rolling Stones is a raw, gritty rock album that fuses blues, rock, and attitude into a timeless masterpiece marked by its iconic cover and rebellious spirit."
+                        android:textColor="@color/purple_500"
+                        android:textSize="10sp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -250,17 +331,20 @@
 
             <Button
                 android:id="@+id/button6"
-                android:layout_width="wrap_content"
+                android:layout_width="143dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Button" />
+                android:background="@drawable/profile_buttons"
+                android:text="Connect Spotify" />
 
             <Button
-                android:id="@+id/button7"
+                android:id="@+id/editProfileBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Button" />
+                android:background="@drawable/profile_buttons"
+                android:text="Edit Profile" />
         </LinearLayout>
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

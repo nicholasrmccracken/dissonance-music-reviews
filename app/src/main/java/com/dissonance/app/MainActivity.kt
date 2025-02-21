@@ -16,9 +16,9 @@ class MainActivity : Activity() {
 
         // Set an onClickListener to add functionality
         myButton.setOnClickListener {
-            myButton.setOnClickListener {
-                val intent = Intent(this, ProfileScreen::class.java)
-                startActivity(intent) // Navigate to ProfileScreen
-            }        }
+            val intent = Intent(this, ProfileScreen::class.java)
+            startActivity(intent) // Navigate to ProfileScreen
+        }
     }
+
 }
