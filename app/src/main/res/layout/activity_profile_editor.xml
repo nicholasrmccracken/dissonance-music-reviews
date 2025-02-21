@@ -18,15 +18,17 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button"
-                android:layout_width="0dp"
+                android:id="@+id/backButton"
+                android:layout_width="2dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_weight="1"
-                android:background="#00FFFFFF"
+                android:background="#00EF0D0D"
+                android:backgroundTint="#C12E2E"
                 android:gravity="center|left"
-                android:text="Button"
+                android:text="Back"
                 app:icon="?attr/homeAsUpIndicator"
-                app:iconPadding="15dp" />
+                app:iconPadding="20dp" />
 
             <TextView
                 android:id="@+id/textView2"

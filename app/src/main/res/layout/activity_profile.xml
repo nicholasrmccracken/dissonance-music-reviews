@@ -12,7 +12,8 @@
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="wrap_content"
-            android:layout_height="568dp"
+            android:layout_height="190dp"
+            android:scaleType="centerCrop"
             app:srcCompat="@drawable/banner_crescent" />
     </FrameLayout>
 
@@ -142,10 +143,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="54dp"
                 android:fontFamily="monospace"
-                android:gravity="center"
+                android:gravity="center|left"
                 android:text="Top Four"
                 android:textColor="#FFFFFF"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@color/secondary" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -264,7 +271,7 @@
                 android:id="@+id/view8"
                 android:layout_width="match_parent"
                 android:layout_height="3dp"
-                android:background="#D4D7F2" />
+                android:background="@color/secondary" />
 
             <Space
                 android:layout_width="match_parent"
@@ -334,8 +341,9 @@
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/spotify_button"
                 android:text="Connect Spotify"
-                android:background="@drawable/spotify_button" />
+                android:textColor="#68D96C" />
 
             <Button
                 android:id="@+id/editProfileBtn"
@@ -343,7 +351,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/profile_buttons"
-                android:text="Edit Profile" />
+                android:text="Edit Profile"
+                android:textColor="#68D96C" />
         </LinearLayout>
 
     </LinearLayout>
