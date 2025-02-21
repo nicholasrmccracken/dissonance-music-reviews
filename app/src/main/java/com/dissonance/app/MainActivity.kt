@@ -10,15 +10,6 @@ class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main) // Linking XML layout
-
-        // Find the button by its ID
-        val myButton = findViewById<Button>(R.id.testButton)
-
-        // Set an onClickListener to add functionality
-        myButton.setOnClickListener {
-            val intent = Intent(this, ProfileScreen::class.java)
-            startActivity(intent) // Navigate to ProfileScreen
-        }
     }
 
 }
