@@ -20,6 +20,7 @@ class ProfileEditScreen : AppCompatActivity() {
         backButton.setOnClickListener {
             val intent = Intent(this, ProfileScreen::class.java)
             startActivity(intent)
+            finish()
         }
     }
 

@@ -22,6 +22,7 @@ class ProfileScreen : AppCompatActivity() {
         editProfileButton.setOnClickListener {
             val intent = Intent(this, ProfileEditScreen::class.java)
             startActivity(intent) // Navigate to ProfileScreen
+            finish() // TODO REMOVE THIS LATER
         }
     }
 
@@ -32,21 +33,21 @@ class ProfileScreen : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        Log.d("Lifecycle", "ProfileEditScreen: onStart() called")
+        Log.d("Lifecycle", "ProfileScreen: onStart() called")
     }
 
     override fun onResume() {
         super.onResume()
-        Log.d("Lifecycle", "ProfileEditScreen: onResume() called")
+        Log.d("Lifecycle", "ProfileScreen: onResume() called")
     }
 
     override fun onPause() {
         super.onPause()
-        Log.d("Lifecycle", "ProfileEditScreen: onPause() called")
+        Log.d("Lifecycle", "ProfileScreen: onPause() called")
     }
 
     override fun onStop() {
         super.onStop()
-        Log.d("Lifecycle", "ProfileEditScreen: onStop() called")
+        Log.d("Lifecycle", "ProfileScreen: onStop() called")
     }
 }
