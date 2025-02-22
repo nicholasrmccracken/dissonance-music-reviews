@@ -72,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:autofillHints="Enter new name"
-                android:background="@drawable/profile_buttons"
+                android:background="@drawable/btn_profile"
                 android:fontFamily="monospace"
                 android:hint="Enter new name"
                 android:inputType="textPersonName" />
@@ -103,7 +103,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:autofillHints="Enter new name"
-                android:background="@drawable/profile_buttons"
+                android:background="@drawable/btn_profile"
                 android:fontFamily="monospace"
                 android:hint="Enter new email"
                 android:inputType="textPersonName" />
@@ -135,7 +135,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:autofillHints="Enter new name"
-                android:background="@drawable/profile_buttons"
+                android:background="@drawable/btn_profile"
                 android:fontFamily="monospace"
                 android:hint="Enter new password"
                 android:inputType="textPersonName" />

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:layout_gravity="bottom"
+    android:clipChildren="false"
+    android:clipToPadding="false">
+
+    <!-- Rounded Background Container -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/bg_navbar" />
+
+    <!-- Navigation Bar -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navbar"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_gravity="bottom"
+        android:background="@android:color/transparent"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:paddingTop="4dp"
+        app:itemIconSize="30dp"
+        app:itemIconTint="@color/nav_item_color"
+        app:itemTextColor="@color/nav_item_color"
+        android:itemBackground="@android:color/transparent"
+        app:itemRippleColor="@android:color/transparent"
+        app:itemActiveIndicatorStyle="@style/ShapeAppearance.Material3.Corner.None"
+        app:labelVisibilityMode="unlabeled"
+        app:menu="@menu/navbar_menu" />
+
+    <!-- Large Background Circle for Floating Button -->
+    <View
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/bg_circle_background"
+        android:tint="@color/background" />
+
+    <!-- Small Primary Circle for Floating Button -->
+    <View
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="54dp"
+        android:background="@drawable/bg_circle_primary" />
+
+    <!-- Floating Create Record Button -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/nav_create_review"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="51dp"
+        android:layout_marginStart="-3dp"
+        android:src="@drawable/ic_create"
+        android:contentDescription="@string/create_review"
+        app:tint="@color/positive"
+        app:maxImageSize="40dp"
+        app:elevation="0dp"
+        app:backgroundTint="@android:color/transparent" />
+</FrameLayout>

@@ -39,7 +39,7 @@
                     android:id="@+id/imageView5"
                     android:layout_width="match_parent"
                     android:layout_height="127dp"
-                    android:background="@drawable/profile_buttons"
+                    android:background="@drawable/btn_profile"
                     android:scaleType="centerInside"
                     android:src="@android:drawable/sym_def_app_icon"
                     android:visibility="visible" />
@@ -169,7 +169,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:src="@drawable/the_rolling_stones_sticky_fingers"
+                        android:src="@drawable/album_sticky_fingers"
                         android:visibility="visible" />
 
                     <ImageView
@@ -177,7 +177,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:src="@drawable/illmaticnas"
+                        android:src="@drawable/album_illmatic"
                         android:visibility="visible" />
 
                     <ImageView
@@ -185,7 +185,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:src="@drawable/tame_impala_currents"
+                        android:src="@drawable/album_currents"
                         android:visibility="visible" />
 
                     <ImageView
@@ -193,7 +193,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:src="@drawable/dark_side_of_the_moon"
+                        android:src="@drawable/album_dark_side_of_the_moon"
                         android:visibility="visible" />
                 </LinearLayout>
 
@@ -292,7 +292,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="126dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/the_rolling_stones_sticky_fingers" />
+                    app:srcCompat="@drawable/album_sticky_fingers" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -341,7 +341,7 @@
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/spotify_button"
+                android:background="@drawable/btn_spotify"
                 android:text="Connect Spotify"
                 android:textColor="#68D96C" />
 
@@ -350,10 +350,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/profile_buttons"
+                android:background="@drawable/btn_profile"
                 android:text="Edit Profile"
                 android:textColor="#68D96C" />
         </LinearLayout>
-
     </LinearLayout>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/navbar_fragment_container"
+        android:name="com.dissonance.app.fragments.NavbarFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

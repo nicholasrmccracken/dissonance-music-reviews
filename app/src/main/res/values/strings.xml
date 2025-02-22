@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">Dissonance</string>
+    <string name="search">Search</string>
+    <string name="home">Home</string>
+    <string name="charts">Charts</string>
+    <string name="create_review">Create Review</string>
+    <string name="profile">Profile</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>

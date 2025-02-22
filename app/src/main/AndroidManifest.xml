@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.dissonance.app"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.dissonance.app">
 
     <application
         android:allowBackup="true"
@@ -12,32 +12,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Dissonance">
-
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.login.LoginActivity"
             android:exported="true"
             android:label="Dissonance"
             android:theme="@style/Theme.Dissonance">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".screens.ProfileScreen"
-            android:exported="false"
+            android:exported="true"
             android:label="Profile"
-            android:theme="@style/Theme.Dissonance">
-        </activity>
-
+            android:theme="@style/Theme.Dissonance" />
         <activity
             android:name=".screens.ProfileEditScreen"
             android:exported="false"
             android:label="Profile"
-            android:theme="@style/Theme.Dissonance">
-        </activity>
-
+            android:theme="@style/Theme.Dissonance" />
     </application>
 
 </manifest>

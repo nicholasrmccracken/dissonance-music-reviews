@@ -13,10 +13,10 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.Toast
-import com.dissonance.app.MainActivity
 import com.dissonance.app.databinding.ActivityLoginBinding
 
 import com.dissonance.app.R
+import com.dissonance.app.screens.ProfileScreen
 
 class LoginActivity : AppCompatActivity() {
 
@@ -110,7 +110,7 @@ class LoginActivity : AppCompatActivity() {
         ).show()
 
         // Navigate to MainActivity after successful login
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, ProfileScreen::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
         finish()  // Close LoginActivity so the user can't go back to it
