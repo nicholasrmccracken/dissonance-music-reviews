@@ -27,4 +27,24 @@ class ProfileEditScreen : AppCompatActivity() {
         super.onDestroy()
         Log.d("Profile screen editor onDestory log", "ProfileScreenEditor Activity onDestroy() Called")
     }
+
+    override fun onStart() {
+        super.onStart()
+        Log.d("Lifecycle", "ProfileEditScreen: onStart() called")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("Lifecycle", "ProfileEditScreen: onResume() called")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d("Lifecycle", "ProfileEditScreen: onPause() called")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d("Lifecycle", "ProfileEditScreen: onStop() called")
+    }
 }
