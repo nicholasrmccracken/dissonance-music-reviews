@@ -2,6 +2,7 @@ package com.dissonance.app.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +21,8 @@ class NavbarFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        Log.d("Lifecycle", "NavbarFragment: onViewCreated() called")
+
         super.onViewCreated(view, savedInstanceState)
 
         val bottomNavbar = view.findViewById<BottomNavigationView>(R.id.bottom_navbar)
@@ -66,6 +69,11 @@ class NavbarFragment : Fragment() {
 //            val intent = Intent(requireActivity(), CreateReviewScreen::class.java)
 //            startActivity(intent)
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Log.d("Lifecycle", "NavbarFragment: onDestroyView() called")
     }
 
     private fun getCurrentMenuItemId(): Int {

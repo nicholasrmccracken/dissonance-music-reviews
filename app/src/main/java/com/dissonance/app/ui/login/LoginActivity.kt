@@ -27,26 +27,26 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        Log.d("Lifecycle", "LoginActivity: onStart()")
+        Log.d("Lifecycle", "LoginActivity: onStart() called")
     }
 
     override fun onResume() {
         super.onResume()
-        Log.d("Lifecycle", "LoginActivity: onResume()")
+        Log.d("Lifecycle", "LoginActivity: onResume() called")
     }
 
     override fun onPause() {
         super.onPause()
-        Log.d("Lifecycle", "LoginActivity: onPause()")
+        Log.d("Lifecycle", "LoginActivity: onPause() called")
     }
 
     override fun onStop() {
         super.onStop()
-        Log.d("Lifecycle", "LoginActivity: onStop()")
+        Log.d("Lifecycle", "LoginActivity: onStop() called")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.d("Lifecycle", "LoginActivity: onDestroy()")
+        Log.d("Lifecycle", "LoginActivity: onDestroy() called")
     }
 }
