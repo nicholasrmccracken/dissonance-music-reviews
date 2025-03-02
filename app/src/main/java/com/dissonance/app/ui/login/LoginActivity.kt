@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.dissonance.app.R
 import com.dissonance.app.databinding.ActivityLoginBinding
+import com.google.firebase.FirebaseApp
 
 class LoginActivity : AppCompatActivity() {
 
@@ -22,6 +23,15 @@ class LoginActivity : AppCompatActivity() {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, LoginFragment())
                 .commit()
+        }
+
+        FirebaseApp.initializeApp(this)
+
+        // Check if Firebase initialized correctly
+        if (FirebaseApp.getApps(this).isNotEmpty()) {
+            Log.d("FirebaseCheck", "Firebase successfully initialized!")
+        } else {
+            Log.e("FirebaseCheck", "Firebase NOT initialized!")
         }
     }
 

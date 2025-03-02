@@ -1,6 +1,9 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <style name="Theme.Dissonance" parent="Theme.Material3.Dark.NoActionBar">
-        <!-- Primary brand color. -->
+        <!-- Default font -->
+        <item name="android:fontFamily">monospace</item>
+
+        <!-- Primary brand color -->
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryContainer">@color/tertiary</item>
         <item name="colorSecondary">@color/secondary</item>

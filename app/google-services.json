@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "827274130941",
+    "project_id": "dissonance-reviews",
+    "storage_bucket": "dissonance-reviews.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:827274130941:android:5b3aa05c8cc883e8ced594",
+        "android_client_info": {
+          "package_name": "com.dissonance.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByajYlpXyrYziq5ObemiY7oylkwQXLsjI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
