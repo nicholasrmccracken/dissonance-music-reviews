@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.dissonance.app.databinding.FragmentSignupBinding
 import com.dissonance.app.screens.ProfileScreen
+import com.google.firebase.auth.FirebaseAuth
 
 class SignupFragment : Fragment() {
 

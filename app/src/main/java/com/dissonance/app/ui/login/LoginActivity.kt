@@ -23,12 +23,15 @@ class LoginActivity : AppCompatActivity() {
                 .replace(R.id.fragment_container, LoginFragment())
                 .commit()
         }
+
     }
 
     override fun onStart() {
         super.onStart()
         Log.d("Lifecycle", "LoginActivity: onStart()")
     }
+
+
 
     override fun onResume() {
         super.onResume()
