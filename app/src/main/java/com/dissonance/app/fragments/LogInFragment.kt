@@ -12,16 +12,20 @@ import androidx.lifecycle.ViewModelProvider
 import com.dissonance.app.R
 import com.dissonance.app.databinding.FragmentLoginBinding
 import com.dissonance.app.screens.ProfileScreen
+import com.google.firebase.auth.FirebaseAuth
 
 class LoginFragment : Fragment() {
 
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
     private lateinit var loginViewModel: LoginViewModel
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d("Lifecycle", "LoginFragment: onCreate()")
+
+        auth = FirebaseAuth.getInstance()
 
         // Initialize ViewModel
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
@@ -48,7 +52,7 @@ class LoginFragment : Fragment() {
             if (username.isEmpty() || password.isEmpty()) {
                 Toast.makeText(requireContext(), "Please enter both username and password", Toast.LENGTH_SHORT).show()
             } else {
-                loginViewModel.login(username, password)
+                loginUser(username, password)
             }
         }
 
@@ -75,6 +79,18 @@ class LoginFragment : Fragment() {
                 navigateToProfileScreen()
             }
         }
+    }
+
+    private fun loginUser(email: String, password: String) {
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(requireContext(), "Login Successful", Toast.LENGTH_SHORT).show()
+                    navigateToProfileScreen()
+                } else {
+                    Toast.makeText(requireContext(), "Authentication Failed", Toast.LENGTH_LONG).show()
+                }
+            }
     }
 
     // Navigate to ProfileScreen on Successful Login
