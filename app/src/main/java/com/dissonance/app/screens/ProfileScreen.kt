@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.Button
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import com.dissonance.app.R
 import com.dissonance.app.fragments.EditProfileFragment
 import com.dissonance.app.viewmodel.ProfileViewModel
@@ -23,6 +24,24 @@ class ProfileScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
         setContentView(R.layout.activity_profile) // Link to XML layout
+
+        profileViewModel.fetchUserAndProfile("user123")
+
+        profileViewModel.userProfileObserve.observe(this, Observer { userProfile ->
+            if (userProfile != null) {
+                Log.d("ProfileScreen", "User Loaded: ${userProfile.totalRatings}, ${userProfile.totalReviews}, ${userProfile.totalFollowers}")
+            } else {
+                Log.d("ProfileScreen", "User profile is null")
+            }
+        })
+
+        profileViewModel.userObjObserve.observe(this, Observer { userObj ->
+            if (userObj != null) {
+                Log.d("ProfileScreen", "User Loaded: ${userObj.username}, ${userObj.email}")
+            } else {
+                Log.d("ProfileScreen", "User profile is null")
+            }
+        })
 
         val editProfileButton = findViewById<Button>(R.id.editProfileBtn)
 
@@ -58,48 +77,3 @@ class ProfileScreen : AppCompatActivity() {
         Log.d("Lifecycle", "ProfileScreen: onStop() called")
     }
 }
-
-
-//package com.dissonance.app.screens
-//
-//import android.os.Bundle
-//import android.util.Log
-//import android.widget.TextView
-//import androidx.activity.viewModels
-//import androidx.appcompat.app.AppCompatActivity
-//import androidx.lifecycle.Observer
-//import com.dissonance.app.R
-//import com.dissonance.app.viewmodel.ProfileViewModel
-//
-//class ProfileScreen : AppCompatActivity() {
-//    private val profileViewModel: ProfileViewModel by viewModels()
-//
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        supportActionBar?.hide()
-//        setContentView(R.layout.activity_profile)
-//
-//        // Reference to UI elements
-//        val userNameTextView = findViewById<TextView>(R.id.userNameTextView)
-//        val userEmailTextView = findViewById<TextView>(R.id.userEmailTextView)
-//
-//        // Replace with actual user ID (e.g., from logged-in session)
-//        val userId = "user_123"
-//
-//        // Fetch user profile
-//        profileViewModel.fetchUserProfile(userId)
-//
-//        // Observe the LiveData
-//        profileViewModel.userProfileObserve.observe(this, Observer { userProfile ->
-//            if (userProfile != null) {
-//                userNameTextView.text = userProfile.name
-//                userEmailTextView.text = userProfile.email
-//                Log.d("ProfileScreen", "User Loaded: ${userProfile.name}, ${userProfile.email}")
-//            } else {
-//                userNameTextView.text = "User not found"
-//                userEmailTextView.text = ""
-//                Log.d("ProfileScreen", "User profile is null")
-//            }
-//        })
-//    }
-//}
