@@ -21,19 +21,19 @@
             android:gravity="center">
 
             <EditText
-                android:id="@+id/firstName"
+                android:id="@+id/displayName"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:hint="First Name"
+                android:hint="Display Name"
                 android:inputType="textPersonName"
                 android:padding="12dp"
                 android:layout_marginBottom="12dp" />
 
             <EditText
-                android:id="@+id/lastName"
+                android:id="@+id/username"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:hint="Last Name"
+                android:hint="Username"
                 android:inputType="textPersonName"
                 android:padding="12dp"
                 android:layout_marginBottom="12dp" />
@@ -65,14 +65,14 @@
                 android:padding="12dp"
                 android:layout_marginBottom="12dp" />
 
-            <EditText
-                android:id="@+id/phoneNumber"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:hint="Phone Number"
-                android:inputType="phone"
-                android:padding="12dp"
-                android:layout_marginBottom="16dp" />
+<!--            <EditText-->
+<!--                android:id="@+id/phoneNumber"-->
+<!--                android:layout_width="300dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:hint="Phone Number"-->
+<!--                android:inputType="phone"-->
+<!--                android:padding="12dp"-->
+<!--                android:layout_marginBottom="16dp" />-->
 
             <Button
                 android:id="@+id/registerButton"
