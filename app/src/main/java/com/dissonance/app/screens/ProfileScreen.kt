@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.dissonance.app.R
 import com.dissonance.app.viewmodel.UserViewModel
+import com.google.firebase.auth.FirebaseAuth
 
 class ProfileScreen : AppCompatActivity() {
 
@@ -32,8 +33,15 @@ class ProfileScreen : AppCompatActivity() {
         totalReviewsTextView = findViewById<TextView>(R.id.numberOfReviews)
         totalFollowersTextView = findViewById<TextView>(R.id.numberOfFollowers)
 
+        val user = FirebaseAuth.getInstance().currentUser
+
         // View Model Interactions
-        userViewModel.fetchUser("testUser")
+        // userViewModel.fetchUser("testUser")
+        if (user != null) {
+            userViewModel.fetchUser(user.uid)
+        } else {
+            Log.d("Fetch UID", "Fetch Current User UID Failure")
+        }
         userViewModel.userObjObserve.observe(this, Observer { userObj ->
             if (userObj != null) {
                 Log.d("User", "User Loaded: ${userObj.username}, ${userObj.email}")

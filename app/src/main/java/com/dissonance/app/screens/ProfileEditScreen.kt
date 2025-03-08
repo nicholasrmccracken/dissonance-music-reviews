@@ -9,6 +9,7 @@ import android.widget.EditText
 import androidx.activity.viewModels
 import com.dissonance.app.R
 import com.dissonance.app.viewmodel.UserViewModel
+import com.google.firebase.auth.FirebaseAuth
 
 class ProfileEditScreen : AppCompatActivity() {
 
@@ -22,6 +23,8 @@ class ProfileEditScreen : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d("Profile screen editor onCreate log", "ProfileScreenEditor Activity onCreate() Called")
+
+        val user = FirebaseAuth.getInstance().currentUser
 
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
@@ -43,9 +46,13 @@ class ProfileEditScreen : AppCompatActivity() {
         submitUsernameButton.setOnClickListener {
             val newName = editName.text.toString()
             if (newName.isNotEmpty()) {
-                val userId = "testUser2"  // TODO Rep
-                userViewModel.updateUserName(userId, newName)
-                Log.d("ProfileEditScreen", "Name updated to: $newName")
+                // userId = "testUser2"
+                if (user != null) {
+                    userViewModel.updateUserName(user.uid, newName)
+                    Log.d("ProfileEditScreen", "Name updated to: $newName")
+                } else {
+                    Log.d("Fetch UID", "Fetch Current User UID Failure")
+                }
             }
         }
 
@@ -53,9 +60,13 @@ class ProfileEditScreen : AppCompatActivity() {
         submitEmailButton.setOnClickListener {
             val newEmail = editEmail.text.toString()
             if (newEmail.isNotEmpty()) {
-                val userId = "testUser2"  // TODO Rep
-                userViewModel.updateUserEmail(userId, newEmail)
-                Log.d("ProfileEditScreen", "Email updated to: $newEmail")
+                // val userId = "testUser2"
+                if (user != null) {
+                    userViewModel.updateUserEmail(user.uid, newEmail)
+                    Log.d("ProfileEditScreen", "Email updated to: $newEmail")
+                } else {
+                    Log.d("Fetch UID", "Fetch Current User UID Failure")
+                }
             }
         }
     }
