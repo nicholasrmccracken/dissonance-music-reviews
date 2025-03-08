@@ -11,6 +11,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.dissonance.app.R
 import com.dissonance.app.screens.ProfileScreen
+import com.dissonance.app.screens.CreateReviewScreen
 
 class NavbarFragment : Fragment() {
     override fun onCreateView(
@@ -66,8 +67,9 @@ class NavbarFragment : Fragment() {
 
         val createReviewButton = view.findViewById<FloatingActionButton>(R.id.nav_create_review)
         createReviewButton.setOnClickListener {
-//            val intent = Intent(requireActivity(), CreateReviewScreen::class.java)
-//            startActivity(intent)
+            Log.d("NavbarFragment", "Create Review Button Clicked!")
+            val intent = Intent(requireContext(), CreateReviewScreen::class.java)
+            startActivity(intent)
         }
     }
 

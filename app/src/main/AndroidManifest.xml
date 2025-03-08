@@ -11,7 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Dissonance">
-
+        <activity
+            android:name=".screens.CreateReviewScreen"
+            android:exported="true"
+            android:label="Create Review"
+            android:theme="@style/Theme.Dissonance" />
         <!-- LoginActivity as the Landing Page -->
         <activity
             android:name=".ui.login.LoginActivity"
@@ -20,25 +24,20 @@
             android:theme="@style/Theme.Dissonance">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- ProfileScreen -->
+        </activity> <!-- ProfileScreen -->
         <activity
             android:name=".screens.ProfileScreen"
             android:exported="true"
             android:label="Profile"
-            android:theme="@style/Theme.Dissonance">
-        </activity>
-
-        <!-- ProfileEditScreen -->
+            android:theme="@style/Theme.Dissonance"></activity> <!-- ProfileEditScreen -->
         <activity
             android:name=".screens.ProfileEditScreen"
             android:exported="true"
             android:label="Edit Profile"
-            android:theme="@style/Theme.Dissonance">
-        </activity>
-
+            android:theme="@style/Theme.Dissonance"></activity>
     </application>
+
 </manifest>
