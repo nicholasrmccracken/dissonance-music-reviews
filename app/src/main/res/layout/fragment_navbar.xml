@@ -5,7 +5,8 @@
     android:layout_height="120dp"
     android:layout_gravity="bottom"
     android:clipChildren="false"
-    android:clipToPadding="false">
+    android:clipToPadding="false"
+    android:descendantFocusability="blocksDescendants">
 
     <!-- Rounded Background Container -->
     <View
