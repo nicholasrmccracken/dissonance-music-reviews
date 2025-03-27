@@ -5,6 +5,7 @@ import com.dissonance.app.data.model.User
 
 import com.google.firebase.firestore.FirebaseFirestore
 
+// TODO you will need to have live data in repository and have viewmodel have observer observing the repository
 class UserRepository {
     private val db = FirebaseFirestore.getInstance()
 
