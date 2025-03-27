@@ -148,5 +148,18 @@
                 android:inputType="textPersonName" />
         </LinearLayout>
 
+        <View
+            android:id="@+id/view4"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="#898888" />
+
+        <Button
+            android:id="@+id/deugButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DEBUG BUTTON"
+            android:textColor="#FF0101" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

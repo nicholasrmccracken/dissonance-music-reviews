@@ -20,6 +20,8 @@ class ProfileEditScreen : AppCompatActivity() {
     private lateinit var submitEmailButton: Button
     private lateinit var submitUsernameButton: Button
     private lateinit var backButton: Button
+    private lateinit var discogsDebugButton: Button
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d("Profile screen editor onCreate log", "ProfileScreenEditor Activity onCreate() Called")
@@ -36,10 +38,18 @@ class ProfileEditScreen : AppCompatActivity() {
         submitUsernameButton = findViewById(R.id.changeNameButton)
         backButton = findViewById(R.id.backButton)
 
+        // TODO Remove later as this is for debug for discogs
+        discogsDebugButton = findViewById(R.id.deugButton)
+
         backButton.setOnClickListener {
             val intent = Intent(this, ProfileScreen::class.java)
             startActivity(intent)
             finish()
+        }
+
+        discogsDebugButton.setOnClickListener {
+            val intent = Intent(this, discogsTest::class.java)
+            startActivity(intent)
         }
 
         // Username update logic

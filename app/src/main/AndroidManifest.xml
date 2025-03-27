@@ -38,6 +38,11 @@
             android:exported="true"
             android:label="Edit Profile"
             android:theme="@style/Theme.Dissonance"></activity>
+        <activity
+            android:name=".screens.discogsTest"
+            android:exported="true"
+            android:label="Testing Discog api"
+            android:theme="@style/Theme.Dissonance"></activity>
     </application>
 
 </manifest>
