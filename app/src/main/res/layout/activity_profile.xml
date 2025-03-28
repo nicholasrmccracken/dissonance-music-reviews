@@ -165,7 +165,7 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:id="@+id/imageView8"
+                        android:id="@+id/topFourImage1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -173,7 +173,7 @@
                         android:visibility="visible" />
 
                     <ImageView
-                        android:id="@+id/imageView9"
+                        android:id="@+id/topFourImage2"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -181,7 +181,7 @@
                         android:visibility="visible" />
 
                     <ImageView
-                        android:id="@+id/imageView10"
+                        android:id="@+id/topFourImage3"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -189,7 +189,7 @@
                         android:visibility="visible" />
 
                     <ImageView
-                        android:id="@+id/imageView11"
+                        android:id="@+id/topFourImage4"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -203,48 +203,48 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/textView12"
+                        android:id="@+id/topFourText1"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:ellipsize="end"
                         android:fontFamily="monospace"
                         android:gravity="center"
-                        android:text="Sticky Fingers\n[Rolling Stones]"
+                        android:text="null"
                         android:textColor="#FFFFFF"
                         android:textSize="10sp" />
 
                     <TextView
-                        android:id="@+id/textView13"
+                        android:id="@+id/topFourText2"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:fontFamily="monospace"
                         android:gravity="center"
-                        android:text="Illmatic\n[Nas]"
+                        android:text="null"
                         android:textColor="#FFFFFF"
                         android:textSize="10sp" />
 
                     <TextView
-                        android:id="@+id/textView14"
+                        android:id="@+id/topFourText3"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:fontFamily="monospace"
                         android:gravity="center"
-                        android:text="Currents\n[Tame Impala]"
+                        android:text="null"
                         android:textColor="#FBFBFB"
                         android:textSize="10sp" />
 
                     <TextView
-                        android:id="@+id/textView15"
+                        android:id="@+id/topFourText4"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:ellipsize="end"
                         android:fontFamily="monospace"
                         android:gravity="center"
-                        android:text="Dark Side of The Moon\n[Pink Floyd]"
+                        android:text="null"
                         android:textColor="#F8F8F8"
                         android:textSize="10sp" />
                 </LinearLayout>
