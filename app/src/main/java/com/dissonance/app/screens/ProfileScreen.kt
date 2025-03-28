@@ -4,10 +4,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import coil3.load
+import coil3.request.crossfade
+import coil3.request.placeholder
+import coil3.size.Scale
 import com.dissonance.app.R
 import com.dissonance.app.data.model.DiscogSearchModel
 import com.dissonance.app.data.model.ReleaseResult
@@ -31,6 +36,8 @@ class ProfileScreen : AppCompatActivity() {
 //    private lateinit var topFourTextView3: TextView
 //    private lateinit var topFourTextView4: TextView
     private lateinit var topFourTextViews: List<TextView>
+    private lateinit var topFourImageViews: List<ImageView>
+
 
 
 
@@ -53,13 +60,19 @@ class ProfileScreen : AppCompatActivity() {
             findViewById<TextView>(R.id.topFourText4)
         )
 
+        topFourImageViews = listOf(
+            findViewById<ImageView>(R.id.topFourImage1),
+            findViewById<ImageView>(R.id.topFourImage2),
+            findViewById<ImageView>(R.id.topFourImage3),
+            findViewById<ImageView>(R.id.topFourImage4)
+        )
 
         // TODO REMOVE LATER WITH PULLED DATA FROM FIRESTORE
         val albumsToSearch = listOf(
-            "The Bends" to "Radiohead",
-            "Sticky Fingers" to "Rolling Stones",
+            "good kid, m.A.A.d city" to "Kendrick Lamar",
+            "The Anthology" to "A Tribe Called Quest",
             "Illmatic" to "Nas",
-            "Icedancer" to "Bladee"
+            "Starz" to "Yung Lean"
         )
 
         // API Related temp storage var
@@ -89,6 +102,7 @@ class ProfileScreen : AppCompatActivity() {
         })
 
         // Observer for discog viewmodel
+        // TODO possibly make some changes to the ? or req or no req for such field
         discogViewModel.batchSearchResults.observe(this) { results ->
             albumsToSearch.forEachIndexed { index, (title, artist) ->
                 // Find the search result for the current album
@@ -99,41 +113,16 @@ class ProfileScreen : AppCompatActivity() {
                     ?.firstOrNull()
                     ?.title
                     ?: "Not Found"
+
+                topFourImageViews[index].load(searchResult?.results?.firstOrNull()?.thumb) {
+                    placeholder(android.R.drawable.ic_menu_report_image)
+                    crossfade(true)
+                    scale(Scale.FILL)
+                }
             }
         }
 
         discogViewModel.searchAlbums(albumsToSearch)
-
-//        discogViewModel.searchResults.observe(this, Observer { discogQueryObject ->
-//            Log.d("PROFILEDEBUG", "DISCOGVIEWMODEL 1")
-//            if(discogQueryObject != null){
-//                Log.d("PROFILEDEBUG", "DISCOGVIEWMODEL 2")
-//                Log.d("PROFILEDEBUG", "${discogQueryObject.results.firstOrNull()?.title}")
-//
-//                when (discogQueryObject.results.firstOrNull()?.title) {
-//                    "The Bends" -> {
-//                        topFourTextView1.text = discogQueryObject.results.firstOrNull()?.title ?: "Not Found"
-//                    }
-//                    "Sticky Fingers" -> {
-//                        topFourTextView2.text = discogQueryObject.results.firstOrNull()?.title ?: "Not Found"
-//                    }
-//                    "Illmatic" -> {
-//                        topFourTextView3.text = discogQueryObject.results.firstOrNull()?.title ?: "Not Found"
-//                    }
-//                    "Icedancer" -> {
-//                        topFourTextView4.text = discogQueryObject.results.firstOrNull()?.title ?: "Not Found"
-//                    }
-//                }
-//            } else {
-//                Log.d("Discogs Search", "No results found or Error during search")
-//            }
-//        })
-
-        // Trigger searches
-//        discogViewModel.searchAlbum("The Bends", "Radiohead")
-//        discogViewModel.searchAlbum("Sticky Fingers", "Rolling Stones")
-//        discogViewModel.searchAlbum("Illmatic", "Nas")
-//        discogViewModel.searchAlbum("Icedancer", "Bladee")
 
         editProfileButton.setOnClickListener {
             val intent = Intent(this, ProfileEditScreen::class.java)
