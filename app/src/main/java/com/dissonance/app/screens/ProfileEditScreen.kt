@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Switch
 import androidx.activity.viewModels
 import com.dissonance.app.R
 import com.dissonance.app.viewmodel.UserViewModel
@@ -21,6 +22,8 @@ class ProfileEditScreen : AppCompatActivity() {
     private lateinit var submitUsernameButton: Button
     private lateinit var backButton: Button
     private lateinit var discogsDebugButton: Button
+    private lateinit var toggleLocationSwitch: Switch
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +40,10 @@ class ProfileEditScreen : AppCompatActivity() {
         submitEmailButton = findViewById(R.id.changeEmailButton)
         submitUsernameButton = findViewById(R.id.changeNameButton)
         backButton = findViewById(R.id.backButton)
+        toggleLocationSwitch = findViewById(R.id.locationSwitch)
+        val sharedPreferences = getSharedPreferences("AppPreferences", MODE_PRIVATE) // get shared pref
+        val isLocationEnabled = sharedPreferences.getBoolean("SHOW_LOCATION", true) // Get SHOW_LOCATION from shared pref, true is incase it doesnt exist
+        toggleLocationSwitch.isChecked = isLocationEnabled
 
         // TODO Remove later as this is for debug for discogs
         discogsDebugButton = findViewById(R.id.deugButton)
@@ -79,6 +86,12 @@ class ProfileEditScreen : AppCompatActivity() {
                 }
             }
         }
+
+        // Save setting when switch is toggled
+        toggleLocationSwitch.setOnCheckedChangeListener { _, isChecked ->
+            sharedPreferences.edit().putBoolean("SHOW_LOCATION", isChecked).apply()
+        }
+
     }
 
     override fun onDestroy() {

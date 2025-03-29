@@ -32,6 +32,7 @@ class ProfileScreen : AppCompatActivity() {
     private val userViewModel: UserViewModel by viewModels()
     private val discogViewModel: SharedDiscogsViewModel by viewModels()
 
+    private lateinit var editProfileButton: Button
     private lateinit var usernameTextView: TextView
     private lateinit var totalRatingsTextView: TextView
     private lateinit var totalReviewsTextView: TextView
@@ -49,13 +50,15 @@ class ProfileScreen : AppCompatActivity() {
         supportActionBar?.hide()
         setContentView(R.layout.activity_profile) // Link to XML layout
 
-        val editProfileButton = findViewById<Button>(R.id.editProfileBtn)
+        editProfileButton = findViewById<Button>(R.id.editProfileBtn)
         usernameTextView = findViewById<TextView>(R.id.username)
         totalRatingsTextView = findViewById<TextView>(R.id.numberOfRatings)
         totalReviewsTextView = findViewById<TextView>(R.id.numberOfReviews)
         totalFollowersTextView = findViewById<TextView>(R.id.numberOfFollowers)
         locationTextView = findViewById(R.id.locationText)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        val sharedPreferences = getSharedPreferences("AppPreferences", MODE_PRIVATE)
+        val locationFlag = sharedPreferences.getBoolean("SHOW_LOCATION", false)
 
         topFourTextViews = listOf(
             findViewById<TextView>(R.id.topFourText1),
@@ -128,8 +131,13 @@ class ProfileScreen : AppCompatActivity() {
 
         discogViewModel.searchAlbums(albumsToSearch)
 
-        // Request permission
-        locationPermissionRequest.launch(android.Manifest.permission.ACCESS_FINE_LOCATION)
+        // If location flag from sharedpref set then fetch location (country) else make that dissapear
+        if(locationFlag){
+            locationPermissionRequest.launch(android.Manifest.permission.ACCESS_FINE_LOCATION)
+        } else {
+            locationTextView.visibility = TextView.GONE
+        }
+
 
         editProfileButton.setOnClickListener {
             val intent = Intent(this, ProfileEditScreen::class.java)
@@ -174,6 +182,7 @@ class ProfileScreen : AppCompatActivity() {
         }
     }
 
+    // Function that gets user country
     private fun getUserCountry() {
         if (ActivityCompat.checkSelfPermission(
                 this,
@@ -206,4 +215,5 @@ class ProfileScreen : AppCompatActivity() {
             }
         }
     }
+
 }

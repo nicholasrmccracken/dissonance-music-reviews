@@ -161,5 +161,11 @@
             android:text="DEBUG BUTTON"
             android:textColor="#FF0101" />
 
+        <Switch
+            android:id="@+id/locationSwitch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Location Toggle" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
