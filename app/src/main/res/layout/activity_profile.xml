@@ -337,7 +337,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="84dp"
+            android:layout_height="51dp"
             android:orientation="horizontal">
 
             <Button
@@ -358,6 +358,12 @@
                 android:text="Edit Profile"
                 android:textColor="#68D96C" />
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/locationText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Location Not Set" />
     </LinearLayout>
 
     <androidx.fragment.app.FragmentContainerView

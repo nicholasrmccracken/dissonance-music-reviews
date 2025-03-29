@@ -1,26 +1,31 @@
 package com.dissonance.app.screens
 
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.location.Geocoder
+import android.location.Location
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
 import coil3.load
 import coil3.request.crossfade
 import coil3.request.placeholder
 import coil3.size.Scale
 import com.dissonance.app.R
-import com.dissonance.app.data.model.DiscogSearchModel
-import com.dissonance.app.data.model.ReleaseResult
 import com.dissonance.app.viewmodel.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
-import com.dissonance.app.singletons.RetrofitClient
 import com.dissonance.app.viewmodel.SharedDiscogsViewModel
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import org.w3c.dom.Text
+import java.util.Locale
 
 class ProfileScreen : AppCompatActivity() {
 
@@ -31,14 +36,11 @@ class ProfileScreen : AppCompatActivity() {
     private lateinit var totalRatingsTextView: TextView
     private lateinit var totalReviewsTextView: TextView
     private lateinit var totalFollowersTextView: TextView
-//    private lateinit var topFourTextView1: TextView
-//    private lateinit var topFourTextView2: TextView
-//    private lateinit var topFourTextView3: TextView
-//    private lateinit var topFourTextView4: TextView
     private lateinit var topFourTextViews: List<TextView>
     private lateinit var topFourImageViews: List<ImageView>
-
-
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private lateinit var locationTextView: TextView
+    private val LOCATION_PERMISSION_REQUEST_CODE = 1001
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,6 +54,8 @@ class ProfileScreen : AppCompatActivity() {
         totalRatingsTextView = findViewById<TextView>(R.id.numberOfRatings)
         totalReviewsTextView = findViewById<TextView>(R.id.numberOfReviews)
         totalFollowersTextView = findViewById<TextView>(R.id.numberOfFollowers)
+        locationTextView = findViewById(R.id.locationText)
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
         topFourTextViews = listOf(
             findViewById<TextView>(R.id.topFourText1),
@@ -124,6 +128,9 @@ class ProfileScreen : AppCompatActivity() {
 
         discogViewModel.searchAlbums(albumsToSearch)
 
+        // Request permission
+        locationPermissionRequest.launch(android.Manifest.permission.ACCESS_FINE_LOCATION)
+
         editProfileButton.setOnClickListener {
             val intent = Intent(this, ProfileEditScreen::class.java)
             startActivity(intent) // Navigate to ProfileScreen
@@ -154,5 +161,49 @@ class ProfileScreen : AppCompatActivity() {
     override fun onStop() {
         super.onStop()
         Log.d("Lifecycle", "ProfileScreen: onStop() called")
+    }
+
+    private val locationPermissionRequest = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted: Boolean ->
+        if (isGranted) {
+            getUserCountry()
+        } else {
+            Log.d("Location", "Permission denied")
+            locationTextView.text = "Location unavailable"
+        }
+    }
+
+    private fun getUserCountry() {
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION),
+                LOCATION_PERMISSION_REQUEST_CODE
+            )
+            return
+        }
+        fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
+            if (location != null) {
+                val geocoder = Geocoder(this, Locale.getDefault())
+                val addresses = geocoder.getFromLocation(location.latitude, location.longitude, 1)
+                if (!addresses.isNullOrEmpty()) {
+                    val country = addresses[0].countryName
+                    locationTextView.text = country
+                    Log.d("Location", "Country: $country")
+                } else {
+                    locationTextView.text = "Country not found"
+                }
+            } else {
+                locationTextView.text = "Location not available"
+            }
+        }
     }
 }
