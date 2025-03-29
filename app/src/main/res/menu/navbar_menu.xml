@@ -9,10 +9,9 @@
         android:icon="@drawable/ic_search"
         android:title="@string/search" />
     <item
-        android:id="@+id/nav_empty"
-        android:enabled="false"
-        android:icon="@android:color/transparent"
-        android:title="" />
+        android:id="@+id/nav_create_review"
+        android:icon="@drawable/ic_create"
+        android:title="Create Review" />
     <item
         android:id="@+id/nav_charts"
         android:icon="@drawable/ic_charts"
