@@ -17,6 +17,7 @@ class ReviewViewModel: ViewModel() {
     val reviewObjObserve: LiveData<Review?> get() = reviewObj
 
     // Function to fetch the review with the lowest timestamp for the given user
+    // TODO the .orderby descending needs some indexing thing in firebase maybe investigate later if that really is needed
     fun getRecentReview(userId: String) {
         db.collection("reviews")
             .whereEqualTo("userId", userId)
