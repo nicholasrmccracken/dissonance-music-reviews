@@ -12,6 +12,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.dissonance.app.R
 import com.dissonance.app.screens.ProfileScreen
 import com.dissonance.app.screens.CreateReviewScreen
+import com.dissonance.app.screens.HomeScreen
 
 class NavbarFragment : Fragment() {
     override fun onCreateView(
@@ -34,10 +35,10 @@ class NavbarFragment : Fragment() {
 
             when (item.itemId) {
                 R.id.nav_home -> {
-//                    if (currentActivity != "HomeScreen") {
-//                    val intent = Intent(requireActivity(), HomeScreen::class.java)
-//                    startActivity(intent)
-//                    }
+                    if (currentActivity != "HomeScreen") {
+                    val intent = Intent(requireActivity(), HomeScreen::class.java)
+                    startActivity(intent)
+                    }
                     true
                 }
                 R.id.nav_search -> {
