@@ -33,36 +33,4 @@
         app:itemActiveIndicatorStyle="@style/ShapeAppearance.Material3.Corner.None"
         app:labelVisibilityMode="unlabeled"
         app:menu="@menu/navbar_menu" />
-
-    <!-- Large Background Circle for Floating Button -->
-    <View
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="48dp"
-        android:background="@drawable/bg_circle_background"
-        android:tint="@color/background" />
-
-    <!-- Small Primary Circle for Floating Button -->
-    <View
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="54dp"
-        android:background="@drawable/bg_circle_primary" />
-
-    <!-- Floating Create Record Button -->
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/nav_create_review"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="51dp"
-        android:layout_marginStart="-3dp"
-        android:src="@drawable/ic_create"
-        android:contentDescription="@string/create_review"
-        app:tint="@color/positive"
-        app:maxImageSize="40dp"
-        app:elevation="0dp"
-        app:backgroundTint="@android:color/transparent" />
 </FrameLayout>

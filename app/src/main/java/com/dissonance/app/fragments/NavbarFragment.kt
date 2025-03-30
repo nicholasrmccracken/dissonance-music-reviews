@@ -7,8 +7,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.dissonance.app.R
 import com.dissonance.app.screens.ProfileScreen
 import com.dissonance.app.screens.CreateReviewScreen
@@ -47,6 +47,13 @@ class NavbarFragment : Fragment() {
 //                    }
                     true
                 }
+                R.id.nav_create_review -> {
+                    if (currentActivity != "CreateReviewScreen") {
+                    val intent = Intent(requireActivity(), CreateReviewScreen::class.java)
+                    startActivity(intent)
+                    }
+                    true
+                }
                 R.id.nav_charts -> {
 //                    if (currentActivity != "ChartsScreen") {
 //                    val intent = Intent(requireActivity(), ChartsScreen::class.java)
@@ -64,13 +71,6 @@ class NavbarFragment : Fragment() {
                 else -> false
             }
         }
-
-        val createReviewButton = view.findViewById<FloatingActionButton>(R.id.nav_create_review)
-        createReviewButton.setOnClickListener {
-            Log.d("NavbarFragment", "Create Review Button Clicked!")
-            val intent = Intent(requireContext(), CreateReviewScreen::class.java)
-            startActivity(intent)
-        }
     }
 
     override fun onDestroyView() {
@@ -83,6 +83,7 @@ class NavbarFragment : Fragment() {
         return when (currentActivity) {
             "HomeScreen" -> R.id.nav_home
             "SearchScreen" -> R.id.nav_search
+            "CreateReviewScreen" -> R.id.nav_create_review
             "ChartsScreen" -> R.id.nav_charts
             "ProfileScreen" -> R.id.nav_profile
             else -> R.id.nav_home
