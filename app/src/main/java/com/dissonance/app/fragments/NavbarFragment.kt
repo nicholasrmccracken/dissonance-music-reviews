@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.dissonance.app.R
 import com.dissonance.app.screens.ProfileScreen
@@ -74,11 +73,6 @@ class NavbarFragment : Fragment() {
                 else -> false
             }
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        Log.d("Lifecycle", "NavbarFragment: onDestroyView() called")
     }
 
     private fun getCurrentMenuItemId(): Int {
