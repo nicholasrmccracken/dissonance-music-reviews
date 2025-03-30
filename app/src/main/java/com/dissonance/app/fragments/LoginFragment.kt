@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.dissonance.app.R
 import com.dissonance.app.databinding.FragmentLoginBinding
+import com.dissonance.app.fragments.SearchFragment
 import com.dissonance.app.screens.ProfileScreen
 import com.google.firebase.auth.FirebaseAuth
 
@@ -86,7 +87,7 @@ class LoginFragment : Fragment() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Toast.makeText(requireContext(), "Login Successful", Toast.LENGTH_SHORT).show()
-                    navigateToProfileScreen()
+                    navigateToSearchFragment()
                 } else {
                     Toast.makeText(requireContext(), "Authentication Failed", Toast.LENGTH_LONG).show()
                 }
@@ -98,6 +99,13 @@ class LoginFragment : Fragment() {
         val intent = Intent(requireContext(), ProfileScreen::class.java)
         startActivity(intent)
         requireActivity().finish()
+    }
+
+    private fun navigateToSearchFragment() {
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, SearchFragment())
+            .addToBackStack(null) // Optional if you want to allow back navigation
+            .commit()
     }
 
     override fun onDestroyView() {
