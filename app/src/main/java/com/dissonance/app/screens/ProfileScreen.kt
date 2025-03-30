@@ -19,6 +19,7 @@ import coil3.request.crossfade
 import coil3.request.placeholder
 import coil3.size.Scale
 import com.dissonance.app.R
+import com.dissonance.app.fragments.ReviewFragment
 import com.dissonance.app.viewmodel.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.dissonance.app.viewmodel.SharedDiscogsViewModel
@@ -144,6 +145,19 @@ class ProfileScreen : AppCompatActivity() {
             startActivity(intent) // Navigate to ProfileScreen
             finish() // TODO REMOVE THIS LATER
         }
+
+        // Embedded review fragment stuff
+        val reviewFragment = ReviewFragment().apply {
+            arguments = Bundle().apply {
+                if (user != null) {
+                    putString("userId", user.uid)
+                }
+            }
+        }
+
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragmentContainerView2, reviewFragment)
+            .commit()
     }
 
     override fun onDestroy() {

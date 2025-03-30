@@ -6,5 +6,6 @@ data class Review(
     val rating: Int = 0,
     val reviewTitle: String = "",
     val reviewText: String = "",
+    val reviewArtist: String = "",
     val timestamp: Long = System.currentTimeMillis()
 )

@@ -61,17 +61,21 @@ class CreateReviewScreen : AppCompatActivity() {
         val reviewTitle = reviewTitleInput.text.toString().trim()
         val reviewText = reviewTextInput.text.toString().trim()
 
+        // TODO Make it 1 to 5
         if (rating == null || rating < 1 || rating > 10) {
             Toast.makeText(this, "Rating must be between 1 and 10.", Toast.LENGTH_SHORT).show()
             return
         }
+
+        val artistName = artistNameText.text.toString()
 
         val review = Review(
             userId = userId,
             albumId = albumId,
             rating = rating,
             reviewTitle = reviewTitle,
-            reviewText = reviewText
+            reviewText = reviewText,
+            reviewArtist = artistName
         )
 
         val db = FirebaseFirestore.getInstance()

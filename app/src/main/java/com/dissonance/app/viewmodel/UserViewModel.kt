@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.dissonance.app.data.UserRepository
+import com.dissonance.app.data.model.Review
 import com.dissonance.app.data.model.User
 
 
@@ -13,10 +14,11 @@ class UserViewModel : ViewModel() {
     // MutableLiveData is writable version of LiveData can be changed, view model writes
     private val repository = UserRepository()
 
-
     // The user obj
     private val userObj = MutableLiveData<User?>()
     val userObjObserve: LiveData<User?> get() = userObj
+
+    private val reviewObj = MutableLiveData<Review?>()
 
     fun fetchUser(userId: String){
         repository.getUser(userId) { user ->
@@ -43,4 +45,5 @@ class UserViewModel : ViewModel() {
             }
         }
     }
+
 }
