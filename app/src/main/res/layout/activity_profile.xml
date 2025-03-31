@@ -39,10 +39,10 @@
                     android:id="@+id/imageView5"
                     android:layout_width="match_parent"
                     android:layout_height="127dp"
-                    android:background="@drawable/btn_profile"
+                    android:background="@android:drawable/alert_light_frame"
                     android:scaleType="centerInside"
-                    android:src="@android:drawable/sym_def_app_icon"
-                    android:visibility="visible" />
+                    android:visibility="visible"
+                    app:srcCompat="@drawable/logo" />
 
                 <TextView
                     android:id="@+id/username"
@@ -317,7 +317,8 @@
             android:id="@+id/locationText"
             android:layout_width="match_parent"
             android:layout_height="26dp"
-            android:text="Location Not Set" />
+            android:text="Location Not Set"
+            android:textAlignment="center" />
     </LinearLayout>
 
     <androidx.fragment.app.FragmentContainerView
