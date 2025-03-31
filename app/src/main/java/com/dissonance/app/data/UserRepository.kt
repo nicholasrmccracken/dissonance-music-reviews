@@ -53,5 +53,18 @@ class UserRepository {
             }
     }
 
+    fun updateUserAboutMe(userId: String, aboutMe: String, callback: (Boolean) -> Unit) {
+        db.collection("users").document(userId)
+            .update("aboutMe", aboutMe)
+            .addOnSuccessListener {
+                Log.d("User Fire Store", "About Me updated successfully")
+                callback(true)
+            }
+            .addOnFailureListener { e ->
+                Log.e("User Fire Store", "Error updating About Me", e)
+                callback(false)
+            }
+    }
+
 
 }

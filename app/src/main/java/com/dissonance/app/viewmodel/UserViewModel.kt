@@ -46,4 +46,14 @@ class UserViewModel : ViewModel() {
         }
     }
 
+    fun updateUserAboutMe(userId: String, newAboutMe: String) {
+        repository.updateUserAboutMe(userId, newAboutMe) { success ->
+            if (success) {
+                userObj.value?.let { user ->
+                    userObj.value = user.copy(aboutMe = newAboutMe) // Update LiveData with new about me text
+                }
+            }
+        }
+    }
+
 }

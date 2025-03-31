@@ -65,5 +65,11 @@
             android:exported="true"
             android:label="Testing Discog api"
             android:theme="@style/Theme.Dissonance"/>
+
+        <activity
+            android:name=".screens.editAboutMeScreen"
+            android:exported="true"
+            android:label="Testing Discog api"
+            android:theme="@style/Theme.Dissonance"/>
     </application>
 </manifest>

@@ -114,6 +114,7 @@ class SignupFragment : Fragment() {
             "totalRatings" to 0,
             "totalReviews" to 0,
             "username" to username,
+            "aboutMe" to "..."
         )
 
         db.collection("users").document(uid).set(userData)

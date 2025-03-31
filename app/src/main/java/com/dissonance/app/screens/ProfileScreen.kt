@@ -34,6 +34,8 @@ class ProfileScreen : AppCompatActivity() {
     private val discogViewModel: SharedDiscogsViewModel by viewModels()
 
     private lateinit var editProfileButton: Button
+    private lateinit var editAboutMeButton: Button
+    private lateinit var aboutMeTextView: TextView
     private lateinit var usernameTextView: TextView
     private lateinit var totalRatingsTextView: TextView
     private lateinit var totalReviewsTextView: TextView
@@ -51,7 +53,9 @@ class ProfileScreen : AppCompatActivity() {
         supportActionBar?.hide()
         setContentView(R.layout.activity_profile) // Link to XML layout
 
+        aboutMeTextView = findViewById<TextView>(R.id.aboutMe)
         editProfileButton = findViewById<Button>(R.id.editProfileBtn)
+        editAboutMeButton = findViewById<Button>(R.id.editAboutMe)
         usernameTextView = findViewById<TextView>(R.id.username)
         totalRatingsTextView = findViewById<TextView>(R.id.numberOfRatings)
         totalReviewsTextView = findViewById<TextView>(R.id.numberOfReviews)
@@ -61,27 +65,20 @@ class ProfileScreen : AppCompatActivity() {
         val sharedPreferences = getSharedPreferences("AppPreferences", MODE_PRIVATE)
         val locationFlag = sharedPreferences.getBoolean("SHOW_LOCATION", false)
 
-        topFourTextViews = listOf(
-            findViewById<TextView>(R.id.topFourText1),
-            findViewById<TextView>(R.id.topFourText2),
-            findViewById<TextView>(R.id.topFourText3),
-            findViewById<TextView>(R.id.topFourText4)
-        )
+//        topFourTextViews = listOf(
+//            findViewById<TextView>(R.id.topFourText1),
+//            findViewById<TextView>(R.id.topFourText2),
+//            findViewById<TextView>(R.id.topFourText3),
+//            findViewById<TextView>(R.id.topFourText4)
+//        )
+//
+//        topFourImageViews = listOf(
+//            findViewById<ImageView>(R.id.topFourImage1),
+//            findViewById<ImageView>(R.id.topFourImage2),
+//            findViewById<ImageView>(R.id.topFourImage3),
+//            findViewById<ImageView>(R.id.topFourImage4)
+//        )
 
-        topFourImageViews = listOf(
-            findViewById<ImageView>(R.id.topFourImage1),
-            findViewById<ImageView>(R.id.topFourImage2),
-            findViewById<ImageView>(R.id.topFourImage3),
-            findViewById<ImageView>(R.id.topFourImage4)
-        )
-
-        // TODO REMOVE LATER WITH PULLED DATA FROM FIRESTORE
-        val albumsToSearch = listOf(
-            "good kid, m.A.A.d city" to "Kendrick Lamar",
-            "The Anthology" to "A Tribe Called Quest",
-            "Illmatic" to "Nas",
-            "Starz" to "Yung Lean"
-        )
 
         // API Related temp storage var
         val user = FirebaseAuth.getInstance().currentUser
@@ -100,6 +97,8 @@ class ProfileScreen : AppCompatActivity() {
                 totalRatingsTextView.text = "${userObj.totalRatings}"
                 totalReviewsTextView.text = "${userObj.totalReviews}"
                 totalFollowersTextView.text = "${userObj.totalFollowers}"
+                aboutMeTextView.text = "${userObj.aboutMe}"
+
             } else {
                 Log.d("User", "User is null")
                 usernameTextView.text = "Error"
@@ -110,27 +109,26 @@ class ProfileScreen : AppCompatActivity() {
         })
 
         // Observer for discog viewmodel
-        // TODO possibly make some changes to the ? or req or no req for such field
-        discogViewModel.batchSearchResults.observe(this) { results ->
-            albumsToSearch.forEachIndexed { index, (title, artist) ->
-                // Find the search result for the current album
-                val searchResult = results[Pair(title, artist)]
+//        discogViewModel.batchSearchResults.observe(this) { results ->
+//            albumsToSearch.forEachIndexed { index, (title, artist) ->
+//                // Find the search result for the current album
+//                val searchResult = results[Pair(title, artist)]
+//
+//                topFourTextViews[index].text = searchResult
+//                    ?.results
+//                    ?.firstOrNull()
+//                    ?.title
+//                    ?: "Not Found"
+//
+//                topFourImageViews[index].load(searchResult?.results?.firstOrNull()?.thumb) {
+//                    placeholder(android.R.drawable.ic_menu_report_image)
+//                    crossfade(true)
+//                    scale(Scale.FILL)
+//                }
+//            }
+//        }
 
-                topFourTextViews[index].text = searchResult
-                    ?.results
-                    ?.firstOrNull()
-                    ?.title
-                    ?: "Not Found"
-
-                topFourImageViews[index].load(searchResult?.results?.firstOrNull()?.thumb) {
-                    placeholder(android.R.drawable.ic_menu_report_image)
-                    crossfade(true)
-                    scale(Scale.FILL)
-                }
-            }
-        }
-
-        discogViewModel.searchAlbums(albumsToSearch)
+//        discogViewModel.searchAlbums(albumsToSearch)
 
         // If location flag from sharedpref set then fetch location (country) else make that dissapear
         if(locationFlag){
@@ -143,6 +141,12 @@ class ProfileScreen : AppCompatActivity() {
         editProfileButton.setOnClickListener {
             val intent = Intent(this, ProfileEditScreen::class.java)
             startActivity(intent) // Navigate to ProfileScreen
+            finish() // TODO REMOVE THIS LATER
+        }
+
+        editAboutMeButton.setOnClickListener {
+            val intent = Intent(this, editAboutMeScreen::class.java)
+            startActivity(intent) // Navigate to edit about me
             finish() // TODO REMOVE THIS LATER
         }
 

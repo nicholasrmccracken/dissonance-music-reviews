@@ -25,7 +25,6 @@ class ProfileEditScreen : AppCompatActivity() {
     private lateinit var toggleLocationSwitch: Switch
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d("Profile screen editor onCreate log", "ProfileScreenEditor Activity onCreate() Called")
 

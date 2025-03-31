@@ -11,5 +11,6 @@ data class User(
     val username: String = "",
     val totalFollowers: Int = 0,
     val totalRatings: Int = 0,
-    val totalReviews: Int = 0
+    val totalReviews: Int = 0,
+    val aboutMe: String = "..."
 )
