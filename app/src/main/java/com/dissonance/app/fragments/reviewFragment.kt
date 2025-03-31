@@ -60,7 +60,7 @@ class ReviewFragment : Fragment() {
                 recentReviewTitle = review.reviewTitle
                 recentReviewArtist = review.reviewArtist
                 recentReviewText = review.reviewText
-                rating = review.rating.toFloat()
+                rating = review.rating.toFloat() / 2 // Assuming 1 - 10 thus we can get half stars in 5 stars
             } else {
                 recentReviewTitle = "None"
                 recentReviewArtist = "None"
