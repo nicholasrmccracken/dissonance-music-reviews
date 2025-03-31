@@ -45,18 +45,11 @@ class ProfileEditScreen : AppCompatActivity() {
         val isLocationEnabled = sharedPreferences.getBoolean("SHOW_LOCATION", true) // Get SHOW_LOCATION from shared pref, true is incase it doesnt exist
         toggleLocationSwitch.isChecked = isLocationEnabled
 
-        // TODO Remove later as this is for debug for discogs
-        discogsDebugButton = findViewById(R.id.deugButton)
 
         backButton.setOnClickListener {
             val intent = Intent(this, ProfileScreen::class.java)
             startActivity(intent)
             finish()
-        }
-
-        discogsDebugButton.setOnClickListener {
-            val intent = Intent(this, discogsTest::class.java)
-            startActivity(intent)
         }
 
         // Username update logic
