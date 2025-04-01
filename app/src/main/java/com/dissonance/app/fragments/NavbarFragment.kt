@@ -12,8 +12,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.dissonance.app.R
 import com.dissonance.app.screens.ProfileScreen
 import com.dissonance.app.screens.CreateReviewScreen
+import com.dissonance.app.screens.SearchScreen
 
 class NavbarFragment : Fragment() {
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,20 +35,18 @@ class NavbarFragment : Fragment() {
             val currentActivity = requireActivity()::class.java.simpleName
 
             when (item.itemId) {
-                R.id.nav_home -> {
+//                R.id.nav_home -> {
 //                    if (currentActivity != "HomeScreen") {
 //                    val intent = Intent(requireActivity(), HomeScreen::class.java)
 //                    startActivity(intent)
 //                    }
-                    true
-                }
+//                    true
+//                }
                 R.id.nav_search -> {
-                    requireActivity().supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, SearchFragment())
-                        .addToBackStack(null)
-                        .commit()
-
-                    bottomNavbar.menu.findItem(R.id.nav_search).isChecked = true
+                    if (currentActivity != "SearchScreen") {
+                        val intent = Intent(requireActivity(), SearchScreen::class.java)
+                        startActivity(intent)
+                    }
                     true
                 }
                 R.id.nav_create_review -> {
@@ -83,12 +83,12 @@ class NavbarFragment : Fragment() {
     private fun getCurrentMenuItemId(): Int {
         val currentActivity = requireActivity()::class.java.simpleName
         return when (currentActivity) {
-            "HomeScreen" -> R.id.nav_home
+//            "HomeScreen" -> R.id.nav_home
             "SearchScreen" -> R.id.nav_search
             "CreateReviewScreen" -> R.id.nav_create_review
 //            "ChartsScreen" -> R.id.nav_charts
             "ProfileScreen" -> R.id.nav_profile
-            else -> R.id.nav_home
+            else -> R.id.nav_profile // TODO: Update to nav_home when home screen is complete
         }
     }
 }

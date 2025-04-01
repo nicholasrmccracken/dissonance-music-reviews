@@ -5,16 +5,13 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Switch
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatActivity.MODE_PRIVATE
 import com.dissonance.app.R
 import com.dissonance.app.viewmodel.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
 
-class editAboutMeScreen : AppCompatActivity() {
+class AboutMeEditScreen : AppCompatActivity() {
     private val userViewModel: UserViewModel by viewModels()
 
     lateinit var backButton: Button
@@ -29,7 +26,7 @@ class editAboutMeScreen : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
-        setContentView(R.layout.activity_aboutme)
+        setContentView(R.layout.activity_about_me_edit)
 
         backButton = findViewById<Button>(R.id.backButton2)
         submitButton = findViewById<Button>(R.id.submitButton)

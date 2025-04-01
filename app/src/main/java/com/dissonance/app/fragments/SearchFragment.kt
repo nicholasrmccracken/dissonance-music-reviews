@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.dissonance.app.R
 import com.dissonance.app.viewmodel.SharedDiscogsViewModel
 
-class SearchFragment : Fragment() {
+class SearchFragment() : Fragment() {
 
     private lateinit var viewModel: SharedDiscogsViewModel
 

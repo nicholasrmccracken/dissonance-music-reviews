@@ -1,6 +1,5 @@
 package com.dissonance.app.fragments
 
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,8 +8,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
-import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import coil3.load
@@ -20,9 +17,7 @@ import coil3.size.Scale
 import com.dissonance.app.R
 import com.dissonance.app.viewmodel.ReviewViewModel
 import com.dissonance.app.viewmodel.SharedDiscogsViewModel
-import com.dissonance.app.viewmodel.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
-import org.w3c.dom.Text
 
 class ReviewFragment : Fragment() {
 

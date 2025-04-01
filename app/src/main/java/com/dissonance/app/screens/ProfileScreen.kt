@@ -14,10 +14,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
-import coil3.load
-import coil3.request.crossfade
-import coil3.request.placeholder
-import coil3.size.Scale
 import com.dissonance.app.R
 import com.dissonance.app.fragments.ReviewFragment
 import com.dissonance.app.viewmodel.UserViewModel
@@ -25,7 +21,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.dissonance.app.viewmodel.SharedDiscogsViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import org.w3c.dom.Text
 import java.util.Locale
 
 class ProfileScreen : AppCompatActivity() {
@@ -145,7 +140,7 @@ class ProfileScreen : AppCompatActivity() {
         }
 
         editAboutMeButton.setOnClickListener {
-            val intent = Intent(this, editAboutMeScreen::class.java)
+            val intent = Intent(this, AboutMeEditScreen::class.java)
             startActivity(intent) // Navigate to edit about me
             finish() // TODO REMOVE THIS LATER
         }

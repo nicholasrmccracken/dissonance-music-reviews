@@ -32,7 +32,7 @@ class ProfileEditScreen : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
-        setContentView(R.layout.activity_profile_editor)
+        setContentView(R.layout.activity_profile_edit)
 
         editName = findViewById(R.id.editNameBox)
         editEmail = findViewById(R.id.editEmailBox)
