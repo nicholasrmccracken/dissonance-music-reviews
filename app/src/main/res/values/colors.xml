@@ -5,6 +5,7 @@
     <color name="primary">#274479</color>
     <color name="secondary">#7996DE</color>
     <color name="tertiary">#556B9D</color>
+    <color name="grey">#374056</color>
 
     <!-- Accents -->
     <color name="gold_accent">#C2995A</color>

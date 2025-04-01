@@ -1,4 +1,4 @@
-package com.dissonance.app.fragments
+package com.dissonance.app.adapter
 
 import android.view.LayoutInflater
 import android.view.View

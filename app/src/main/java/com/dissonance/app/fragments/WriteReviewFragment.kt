@@ -71,6 +71,7 @@ class WriteReviewFragment : Fragment() {
 
     private fun publishReview() {
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
+        val username = FirebaseAuth.getInstance().currentUser?.displayName ?: "Anonymous"
         val rating = ratingInput.text.toString().toIntOrNull()
         val reviewTitle = reviewTitleInput.text.toString().trim()
         val reviewText = reviewTextInput.text.toString().trim()
@@ -80,15 +81,16 @@ class WriteReviewFragment : Fragment() {
             return
         }
 
-        val artistName = artistNameText.text.toString()
-
         val review = Review(
             userId = userId,
+            username = username,
             albumId = albumId,
+            albumCoverUrl = albumCoverUrl,
+            albumTitle = albumTitle,
+            artistName = artistName,
             rating = rating,
             reviewTitle = reviewTitle,
-            reviewText = reviewText,
-            reviewArtist = artistName
+            reviewText = reviewText
         )
 
         val db = FirebaseFirestore.getInstance()
@@ -96,10 +98,10 @@ class WriteReviewFragment : Fragment() {
         db.collection("reviews")
             .add(review)
             .addOnSuccessListener {
-                Toast.makeText(requireContext(), "Review published!", Toast.LENGTH_SHORT).show()
-                requireActivity().finish()
                 val userRef = db.collection("users").document(userId)
                 userRef.update("totalReviews", com.google.firebase.firestore.FieldValue.increment(1))
+                Toast.makeText(requireContext(), "Review published!", Toast.LENGTH_SHORT).show()
+                requireActivity().finish()
             }
             .addOnFailureListener {
                 Toast.makeText(requireContext(), "Failed to publish review: ${it.message}", Toast.LENGTH_LONG).show()

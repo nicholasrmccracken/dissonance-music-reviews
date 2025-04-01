@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dissonance.app.R
+import com.dissonance.app.adapter.SearchAdapter
 import com.dissonance.app.viewmodel.SharedDiscogsViewModel
 
 class SearchResultsFragment : Fragment() {

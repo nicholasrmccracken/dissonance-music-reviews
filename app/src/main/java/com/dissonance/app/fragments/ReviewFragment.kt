@@ -54,7 +54,7 @@ class ReviewFragment : Fragment() {
             val review = reviews.firstOrNull()
             if (review != null) {
                 recentReviewTitle = review.reviewTitle
-                recentReviewArtist = review.reviewArtist
+                recentReviewArtist = review.artistName
                 recentReviewText = review.reviewText
                 rating = review.rating.toFloat() / 2 // Assuming 1 - 10 thus we can get half stars in 5 stars
             } else {
