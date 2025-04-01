@@ -56,13 +56,13 @@ class NavbarFragment : Fragment() {
                     }
                     true
                 }
-                R.id.nav_charts -> {
+//                R.id.nav_charts -> {
 //                    if (currentActivity != "ChartsScreen") {
 //                    val intent = Intent(requireActivity(), ChartsScreen::class.java)
 //                    startActivity(intent)
 //                    }
-                    true
-                }
+//                    true
+//                }
                 R.id.nav_profile -> {
                     if (currentActivity != "ProfileScreen") {
                         val intent = Intent(requireActivity(), ProfileScreen::class.java)
@@ -86,7 +86,7 @@ class NavbarFragment : Fragment() {
             "HomeScreen" -> R.id.nav_home
             "SearchScreen" -> R.id.nav_search
             "CreateReviewScreen" -> R.id.nav_create_review
-            "ChartsScreen" -> R.id.nav_charts
+//            "ChartsScreen" -> R.id.nav_charts
             "ProfileScreen" -> R.id.nav_profile
             else -> R.id.nav_home
         }
