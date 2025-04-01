@@ -12,7 +12,7 @@ import com.dissonance.app.R
 * could blur the profile page in the back
 * */
 
-class EditProfileFragment : Fragment() {
+class ProfileEditFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

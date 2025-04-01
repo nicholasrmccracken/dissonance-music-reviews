@@ -10,6 +10,10 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import coil3.load
+import coil3.request.crossfade
+import coil3.request.placeholder
+import coil3.size.Scale
 import com.dissonance.app.R
 import com.dissonance.app.data.model.Review
 import com.google.firebase.auth.FirebaseAuth
@@ -54,7 +58,11 @@ class WriteReviewFragment : Fragment() {
 
         albumTitleText.text = albumTitle
         artistNameText.text = artistName
-        // TODO: Show album cover image using GLIDE
+        albumCoverImage.load(albumCoverUrl){
+            placeholder(R.drawable.album_placeholder)
+            crossfade(true)
+            scale(Scale.FILL)
+        }
 
         publishButton.setOnClickListener {
             publishReview()

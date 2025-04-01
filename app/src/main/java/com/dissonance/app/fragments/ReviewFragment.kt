@@ -50,8 +50,9 @@ class ReviewFragment : Fragment() {
         // API Related temp storage var
         val user = FirebaseAuth.getInstance().currentUser
 
-        reviewViewModel.reviewObjObserve.observe(viewLifecycleOwner) { review ->
-            if(review != null){
+        reviewViewModel.reviewListObserve.observe(viewLifecycleOwner) { reviews ->
+            val review = reviews.firstOrNull()
+            if (review != null) {
                 recentReviewTitle = review.reviewTitle
                 recentReviewArtist = review.reviewArtist
                 recentReviewText = review.reviewText
@@ -74,12 +75,7 @@ class ReviewFragment : Fragment() {
             }
         }
 
-        if (user != null) {
-            reviewViewModel.getRecentReview(userId = user.uid)
-            Log.d("reviewFragment", user.uid)
-        } else {
-            Log.d("Review Fragment", "Error cannot get current user uid")
-        }
+        refresh()
 
         discogViewModel.searchResults.observe(viewLifecycleOwner) { album ->
             albumCover.load(album.results[1].thumb){
@@ -88,6 +84,15 @@ class ReviewFragment : Fragment() {
                 scale(Scale.FILL)
             }
         }
+    }
 
+    fun refresh() {
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+        if (userId != null) {
+            reviewViewModel.getRecentReviews(1, userId)
+            Log.d("ReviewFragment", "Refreshing reviews for user: $userId")
+        } else {
+            Log.d("ReviewFragment", "ERROR: Unable to get current userId")
+        }
     }
 }

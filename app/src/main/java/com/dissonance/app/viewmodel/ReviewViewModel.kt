@@ -13,27 +13,28 @@ import com.google.firebase.firestore.Query
 class ReviewViewModel: ViewModel() {
 
     private val db = FirebaseFirestore.getInstance()
-    private val reviewObj = MutableLiveData<Review?>()
-    val reviewObjObserve: LiveData<Review?> get() = reviewObj
+    private val reviewList = MutableLiveData<List<Review>>()
+    val reviewListObserve: LiveData<List<Review>> get() = reviewList
 
     // Function to fetch the review with the lowest timestamp for the given user
-    // TODO the .orderby descending needs some indexing thing in firebase maybe investigate later if that really is needed
-    fun getRecentReview(userId: String) {
-        db.collection("reviews")
-            .whereEqualTo("userId", userId)
+    fun getRecentReviews(limit: Int, userId: String? = null) {
+        var query = db.collection("reviews")
             .orderBy("timestamp", Query.Direction.DESCENDING)
-            .limit(1)
-            .get()
+            .limit(limit.toLong())
+
+        if (!userId.isNullOrBlank()) {
+            query = query.whereEqualTo("userId", userId)
+        }
+
+        query.get()
             .addOnSuccessListener { result ->
-                val review = result.documents.firstOrNull()?.toObject(Review::class.java)
-                reviewObj.value = review
-                Log.d("getRecentReview", "Success")
+                val reviews = result.documents.mapNotNull { it.toObject(Review::class.java) }
+                reviewList.value = reviews
+                Log.d("getRecentReview", "Fetched ${reviews.size} reviews")
             }
             .addOnFailureListener {
-                // If the query fails, update LiveData with null
-                reviewObj.value = null
-                Log.d("getRecentReview", "Error")
-
+                reviewList.value = emptyList()
+                Log.d("getRecentReview", "Error fetching reviews")
             }
     }
 }

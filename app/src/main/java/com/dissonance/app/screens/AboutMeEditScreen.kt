@@ -14,11 +14,9 @@ import com.google.firebase.auth.FirebaseAuth
 class AboutMeEditScreen : AppCompatActivity() {
     private val userViewModel: UserViewModel by viewModels()
 
-    lateinit var backButton: Button
-    lateinit var submitButton: Button
-    lateinit var editAboutMe: EditText
-
-
+    private lateinit var backButton: Button
+    private lateinit var submitButton: Button
+    private lateinit var editAboutMe: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -46,30 +44,5 @@ class AboutMeEditScreen : AppCompatActivity() {
                 }
             }
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d("Profile screen editor onDestory log", "ProfileScreenEditor Activity onDestroy() Called")
-    }
-
-    override fun onStart() {
-        super.onStart()
-        Log.d("Lifecycle", "ProfileEditScreen: onStart() called")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.d("Lifecycle", "ProfileEditScreen: onResume() called")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.d("Lifecycle", "ProfileEditScreen: onPause() called")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.d("Lifecycle", "ProfileEditScreen: onStop() called")
     }
 }

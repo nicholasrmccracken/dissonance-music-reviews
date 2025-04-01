@@ -159,29 +159,19 @@ class ProfileScreen : AppCompatActivity() {
             .commit()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d("Profile screen onDestory log", "ProfileScreen Activity onDestroy() Called")
-    }
-
-    override fun onStart() {
-        super.onStart()
-        Log.d("Lifecycle", "ProfileScreen: onStart() called")
-    }
-
     override fun onResume() {
         super.onResume()
-        Log.d("Lifecycle", "ProfileScreen: onResume() called")
-    }
 
-    override fun onPause() {
-        super.onPause()
-        Log.d("Lifecycle", "ProfileScreen: onPause() called")
-    }
 
-    override fun onStop() {
-        super.onStop()
-        Log.d("Lifecycle", "ProfileScreen: onStop() called")
+        val user = FirebaseAuth.getInstance().currentUser
+        if (user != null) {
+            userViewModel.fetchUser(user.uid) // Refresh user data
+        }
+
+        val reviewFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView2)
+        if (reviewFragment is ReviewFragment) {
+            reviewFragment.refresh()  // You'll define this function in ReviewFragment
+        }
     }
 
     private val locationPermissionRequest = registerForActivityResult(
