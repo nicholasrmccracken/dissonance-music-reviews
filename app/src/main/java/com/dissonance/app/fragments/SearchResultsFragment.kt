@@ -38,6 +38,12 @@ class SearchResultsFragment : Fragment() {
                 putInt("album_id", selectedAlbum.id)
                 putString("album_title", selectedAlbum.title)
                 putString("album_uri", selectedAlbum.uri)
+                putString("album_thumb", selectedAlbum.thumb)
+                putString("album_year", selectedAlbum.year)
+                putString("album_country", selectedAlbum.country)
+                putString("album_format", selectedAlbum.format?.joinToString(", "))
+                putString("album_label", selectedAlbum.label?.joinToString(", "))
+                putString("album_genre", selectedAlbum.genre?.joinToString(", "))
             }
 
             val fragment = AlbumDetailFragment().apply {
@@ -56,8 +62,12 @@ class SearchResultsFragment : Fragment() {
         }
 
         viewModel.searchResults.observe(viewLifecycleOwner) { results ->
-            searchAdapter.submitList(results.results)
+            val uniqueResults = results.results
+                .distinctBy { it.title.trim().lowercase() }
+
+            searchAdapter.submitList(uniqueResults)
         }
+
 
         backButton.setOnClickListener {
             parentFragmentManager.popBackStack()

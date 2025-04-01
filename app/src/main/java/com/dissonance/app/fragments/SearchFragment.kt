@@ -41,8 +41,8 @@ class SearchFragment : Fragment() {
             val genre = genreInput.text.toString()
             val year = yearInput.text.toString()
 
-            if (artist.isBlank()) {
-                Toast.makeText(requireContext(), "Artist is required", Toast.LENGTH_SHORT).show()
+            if (artist.isBlank() && title.isBlank()) {
+                Toast.makeText(requireContext(), "Enter at least an artist or album title", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 

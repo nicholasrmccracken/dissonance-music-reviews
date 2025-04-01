@@ -41,10 +41,12 @@ class NavbarFragment : Fragment() {
                     true
                 }
                 R.id.nav_search -> {
-//                    if (currentActivity != "SearchScreen") {
-//                    val intent = Intent(requireActivity(), SearchScreen::class.java)
-//                    startActivity(intent)
-//                    }
+                    requireActivity().supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, SearchFragment())
+                        .addToBackStack(null)
+                        .commit()
+
+                    bottomNavbar.menu.findItem(R.id.nav_search).isChecked = true
                     true
                 }
                 R.id.nav_charts -> {
