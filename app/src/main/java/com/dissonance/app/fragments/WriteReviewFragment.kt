@@ -13,6 +13,7 @@ import android.widget.Toast
 import coil3.load
 import coil3.request.crossfade
 import coil3.request.placeholder
+import coil3.request.error
 import coil3.size.Scale
 import com.dissonance.app.R
 import com.dissonance.app.data.model.Review
@@ -58,8 +59,9 @@ class WriteReviewFragment : Fragment() {
 
         albumTitleText.text = albumTitle
         artistNameText.text = artistName
-        albumCoverImage.load(albumCoverUrl){
-            placeholder(R.drawable.album_placeholder)
+        albumCoverImage.load(albumCoverUrl.ifBlank { null }) {
+            placeholder(android.R.drawable.ic_menu_report_image)
+            error(R.drawable.album_placeholder)
             crossfade(true)
             scale(Scale.FILL)
         }
@@ -70,46 +72,67 @@ class WriteReviewFragment : Fragment() {
     }
 
     private fun publishReview() {
-        val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
-        val username = FirebaseAuth.getInstance().currentUser?.displayName ?: "Anonymous"
         val rating = ratingInput.text.toString().toIntOrNull()
         val reviewTitle = reviewTitleInput.text.toString().trim()
         val reviewText = reviewTextInput.text.toString().trim()
 
         if (rating == null || rating !in 1..10) {
-            Toast.makeText(requireContext(), "Rating must be between 1 and 10.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(),
+                    "Rating must be between 1 and 10.", Toast.LENGTH_SHORT).show()
             return
         }
 
-        val review = Review(
-            userId = userId,
-            username = username,
-            albumId = albumId,
-            albumCoverUrl = albumCoverUrl,
-            albumTitle = albumTitle,
-            artistName = artistName,
-            rating = rating,
-            reviewTitle = reviewTitle,
-            reviewText = reviewText
-        )
+        if (reviewTitle.isEmpty() || reviewText.isEmpty()) {
+            Toast.makeText(requireContext(),
+                "Review title and text are required.", Toast.LENGTH_SHORT).show()
+            return
+        }
 
         val db = FirebaseFirestore.getInstance()
+        val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
+        db.collection("users")
+            .document(userId)
+            .get()
+            .addOnSuccessListener { document ->
+                val username = document.getString("username") ?: "anon"
 
-        db.collection("reviews")
-            .add(review)
-            .addOnSuccessListener {
-                val userRef = db.collection("users").document(userId)
-                userRef.update("totalReviews", com.google.firebase.firestore.FieldValue.increment(1))
-                Toast.makeText(requireContext(), "Review published!", Toast.LENGTH_SHORT).show()
-                requireActivity().finish()
-            }
-            .addOnFailureListener {
-                Toast.makeText(requireContext(), "Failed to publish review: ${it.message}", Toast.LENGTH_LONG).show()
+                val review = Review(
+                    userId = userId,
+                    username = username,
+                    albumId = albumId,
+                    albumCoverUrl = albumCoverUrl,
+                    albumTitle = albumTitle,
+                    artistName = artistName,
+                    rating = rating,
+                    reviewTitle = reviewTitle,
+                    reviewText = reviewText
+                )
+
+                db.collection("reviews")
+                    .add(review)
+                    .addOnSuccessListener {
+                        db.collection("users").document(userId)
+                            .update("totalReviews", com.google.firebase.firestore.FieldValue.increment(1))
+
+                        Toast.makeText(requireContext(),
+                            "Review published!", Toast.LENGTH_SHORT).show()
+
+                        requireActivity().finish()
+                    }
+                    .addOnFailureListener {
+                        Toast.makeText(requireContext(),
+                            "Failed to publish review: ${it.message}", Toast.LENGTH_LONG).show()
+                    }
             }
     }
 
     companion object {
-        fun newInstance(albumId: String, albumCoverUrl: String, albumTitle: String, artistName: String): WriteReviewFragment {
+        fun newInstance(
+            albumId: String,
+            albumCoverUrl: String,
+            albumTitle: String,
+            artistName: String
+        ): WriteReviewFragment {
             val fragment = WriteReviewFragment()
             fragment.arguments = Bundle().apply {
                 putString("albumId", albumId)

@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import coil3.load
 import coil3.request.crossfade
 import coil3.request.placeholder
+import coil3.request.error
 import coil3.size.Scale
 import com.dissonance.app.R
 import com.dissonance.app.viewmodel.ReviewViewModel
@@ -80,6 +81,7 @@ class ReviewFragment : Fragment() {
         discogViewModel.searchResults.observe(viewLifecycleOwner) { album ->
             albumCover.load(album.results[1].thumb){
                 placeholder(android.R.drawable.ic_menu_report_image)
+                error(R.drawable.album_placeholder)
                 crossfade(true)
                 scale(Scale.FILL)
             }

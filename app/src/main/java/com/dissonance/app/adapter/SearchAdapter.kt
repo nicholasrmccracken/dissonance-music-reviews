@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil3.load
+import coil3.request.crossfade
 import coil3.request.placeholder
+import coil3.request.error
 import coil3.size.Scale
 import com.dissonance.app.R
 import com.dissonance.app.data.model.ReleaseResult
@@ -37,6 +39,8 @@ class SearchAdapter(
             titleText.text = item.title
             thumbImage.load(item.thumb) {
                 placeholder(android.R.drawable.ic_menu_report_image)
+                error(R.drawable.album_placeholder)
+                crossfade(true)
                 scale(Scale.FILL)
             }
 

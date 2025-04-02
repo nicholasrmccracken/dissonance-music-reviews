@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil3.load
 import coil3.request.crossfade
+import coil3.request.error
 import coil3.request.placeholder
 import coil3.size.Scale
 import com.dissonance.app.R
@@ -38,8 +39,9 @@ class ReviewAdapter : ListAdapter<Review, ReviewAdapter.ReviewViewHolder>(DiffCa
         private val username = itemView.findViewById<TextView>(R.id.review_username_label)
 
         fun bind(item: Review) {
-            albumCoverImage.load(item.albumCoverUrl) {
-                placeholder(R.drawable.album_placeholder)
+            albumCoverImage.load(item.albumCoverUrl.ifBlank { null }) {
+                placeholder(android.R.drawable.ic_menu_report_image)
+                error(R.drawable.album_placeholder)
                 crossfade(true)
                 scale(Scale.FILL)
             }
