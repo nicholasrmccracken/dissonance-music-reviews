@@ -39,7 +39,6 @@
                     android:id="@+id/imageView5"
                     android:layout_width="match_parent"
                     android:layout_height="127dp"
-                    android:background="@android:drawable/alert_light_frame"
                     android:scaleType="centerInside"
                     android:visibility="visible"
                     app:srcCompat="@drawable/logo" />

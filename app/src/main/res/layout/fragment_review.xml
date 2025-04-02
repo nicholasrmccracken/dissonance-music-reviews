@@ -45,12 +45,13 @@
                     android:stepSize=".5" />
 
                 <TextView
-                    android:id="@+id/reviewUsername"
+                    android:id="@+id/usernameTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Username"
                     android:textAlignment="center"
-                    android:textColor="#779FE6" />
+                    android:textColor="#779FE6"
+                    android:textStyle="italic" />
 
             </LinearLayout>
 

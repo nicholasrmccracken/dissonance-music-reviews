@@ -28,7 +28,7 @@ class AboutMeEditScreen : AppCompatActivity() {
 
         backButton = findViewById<Button>(R.id.backButton2)
         submitButton = findViewById<Button>(R.id.submitButton)
-        editAboutMe = findViewById<EditText>(R.id.editAboutMe)
+        editAboutMe = findViewById<EditText>(R.id.editAboutMeText)
 
         backButton.setOnClickListener {
             val intent = Intent(this, ProfileScreen::class.java)

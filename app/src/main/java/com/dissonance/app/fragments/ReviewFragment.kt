@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import coil3.load
@@ -18,12 +19,24 @@ import coil3.size.Scale
 import com.dissonance.app.R
 import com.dissonance.app.viewmodel.ReviewViewModel
 import com.dissonance.app.viewmodel.SharedDiscogsViewModel
+import com.dissonance.app.viewmodel.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
 
 class ReviewFragment : Fragment() {
 
     private lateinit var reviewViewModel: ReviewViewModel
     private lateinit var discogViewModel: SharedDiscogsViewModel
+
+
+    private var userId: String? = null
+    private var username: String? = null  // Added username field
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            userId = it.getString("userId")
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -42,44 +55,35 @@ class ReviewFragment : Fragment() {
         val albumTitle = view.findViewById<TextView>(R.id.reviewTitle)
         val albumArtist = view.findViewById<TextView>(R.id.reviewArtist)
         val reviewContent = view.findViewById<TextView>(R.id.reviewContent)
+        val usernameTextView = view.findViewById<TextView>(R.id.usernameTextView) // Assume there's a TextView in your layout for this
 
-        var recentReviewTitle = ""
-        var recentReviewArtist = ""
-        var recentReviewText = ""
-        var rating = 0f
-
-        // API Related temp storage var
-        val user = FirebaseAuth.getInstance().currentUser
 
         reviewViewModel.reviewListObserve.observe(viewLifecycleOwner) { reviews ->
             val review = reviews.firstOrNull()
             if (review != null) {
-                recentReviewTitle = review.reviewTitle
-                recentReviewArtist = review.artistName
-                recentReviewText = review.reviewText
-                rating = review.rating.toFloat() / 2 // Assuming 1 - 10 thus we can get half stars in 5 stars
+                albumTitle.text = review.reviewTitle
+                albumArtist.text = review.artistName
+                reviewContent.text = review.reviewText
+                ratingBar.rating = review.rating.toFloat() / 2 // Normalize rating
+                usernameTextView.text = review.username
+
             } else {
-                recentReviewTitle = "None"
-                recentReviewArtist = "None"
-                recentReviewText = "Make your first review!"
-                rating = 0f
+                albumTitle.text = "None"
+                albumArtist.text = "None"
+                reviewContent.text = "Make your first review!"
+                ratingBar.rating = 0f
             }
 
-            albumTitle.text = recentReviewTitle
-            albumArtist.text = recentReviewArtist
-            reviewContent.text = recentReviewText
-            ratingBar.rating = rating
-
-            // Call API search only after review data is available. Fixes concurrency issue.
-            if (recentReviewTitle != "None" && recentReviewArtist != "None") {
-                discogViewModel.searchAlbum(query = recentReviewTitle, artist = recentReviewArtist)
+            // Call API search only after review data is available
+            if (albumTitle.text != "None" && albumArtist.text != "None") {
+                discogViewModel.searchAlbum(query = albumTitle.text.toString(), artist = albumArtist.text.toString())
             }
         }
 
         refresh()
 
         discogViewModel.searchResults.observe(viewLifecycleOwner) { album ->
-            albumCover.load(album.results[1].thumb){
+            albumCover.load(album.results[0].thumb) {
                 placeholder(android.R.drawable.ic_menu_report_image)
                 error(R.drawable.album_placeholder)
                 crossfade(true)
@@ -89,10 +93,9 @@ class ReviewFragment : Fragment() {
     }
 
     fun refresh() {
-        val userId = FirebaseAuth.getInstance().currentUser?.uid
         if (userId != null) {
-            reviewViewModel.getRecentReviews(1, userId)
-            Log.d("ReviewFragment", "Refreshing reviews for user: $userId")
+            reviewViewModel.getRecentReviews(1, userId!!)
+            Log.d("ReviewFragment", "Refreshing reviews for user: $userId with username: $username")
         } else {
             Log.d("ReviewFragment", "ERROR: Unable to get current userId")
         }

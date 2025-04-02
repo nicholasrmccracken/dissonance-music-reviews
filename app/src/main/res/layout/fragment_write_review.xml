@@ -158,16 +158,16 @@
         android:id="@+id/review_text_input"
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:hint="Write your thoughts..."
-        android:textSize="16sp"
-        android:textColor="#FFFFFF"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
         android:background="@android:color/transparent"
         android:gravity="top"
-        app:layout_constraintTop_toBottomOf="@id/review_text_label"
-        app:layout_constraintStart_toStartOf="parent"
+        android:hint="Write your thoughts..."
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/review_text_label" />
 
     <!-- Bottom Navbar -->
     <androidx.fragment.app.FragmentContainerView

@@ -26,7 +26,6 @@ import java.util.Locale
 class ProfileScreen : AppCompatActivity() {
 
     private val userViewModel: UserViewModel by viewModels()
-    private val discogViewModel: SharedDiscogsViewModel by viewModels()
 
     private lateinit var editProfileButton: Button
     private lateinit var editAboutMeButton: Button
@@ -60,21 +59,6 @@ class ProfileScreen : AppCompatActivity() {
         val sharedPreferences = getSharedPreferences("AppPreferences", MODE_PRIVATE)
         val locationFlag = sharedPreferences.getBoolean("SHOW_LOCATION", false)
 
-//        topFourTextViews = listOf(
-//            findViewById<TextView>(R.id.topFourText1),
-//            findViewById<TextView>(R.id.topFourText2),
-//            findViewById<TextView>(R.id.topFourText3),
-//            findViewById<TextView>(R.id.topFourText4)
-//        )
-//
-//        topFourImageViews = listOf(
-//            findViewById<ImageView>(R.id.topFourImage1),
-//            findViewById<ImageView>(R.id.topFourImage2),
-//            findViewById<ImageView>(R.id.topFourImage3),
-//            findViewById<ImageView>(R.id.topFourImage4)
-//        )
-
-
         // API Related temp storage var
         val user = FirebaseAuth.getInstance().currentUser
 
@@ -103,28 +87,6 @@ class ProfileScreen : AppCompatActivity() {
             }
         })
 
-        // Observer for discog viewmodel
-//        discogViewModel.batchSearchResults.observe(this) { results ->
-//            albumsToSearch.forEachIndexed { index, (title, artist) ->
-//                // Find the search result for the current album
-//                val searchResult = results[Pair(title, artist)]
-//
-//                topFourTextViews[index].text = searchResult
-//                    ?.results
-//                    ?.firstOrNull()
-//                    ?.title
-//                    ?: "Not Found"
-//
-//                topFourImageViews[index].load(searchResult?.results?.firstOrNull()?.thumb) {
-//                    placeholder(android.R.drawable.ic_menu_report_image)
-//                    crossfade(true)
-//                    scale(Scale.FILL)
-//                }
-//            }
-//        }
-
-//        discogViewModel.searchAlbums(albumsToSearch)
-
         // If location flag from sharedpref set then fetch location (country) else make that dissapear
         if(locationFlag){
             locationPermissionRequest.launch(android.Manifest.permission.ACCESS_FINE_LOCATION)
@@ -148,8 +110,9 @@ class ProfileScreen : AppCompatActivity() {
         // Embedded review fragment stuff
         val reviewFragment = ReviewFragment().apply {
             arguments = Bundle().apply {
-                if (user != null) {
+                user?.let {
                     putString("userId", user.uid)
+                    putString("username", user.displayName)
                 }
             }
         }
