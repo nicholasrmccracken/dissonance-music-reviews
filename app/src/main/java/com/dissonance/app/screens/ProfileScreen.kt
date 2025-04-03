@@ -16,6 +16,7 @@ import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
 import com.dissonance.app.R
 import com.dissonance.app.fragments.ReviewFragment
+import com.dissonance.app.ui.login.LoginActivity
 import com.dissonance.app.viewmodel.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.dissonance.app.viewmodel.SharedDiscogsViewModel
@@ -120,6 +121,15 @@ class ProfileScreen : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragmentContainerView2, reviewFragment)
             .commit()
+
+        val logoutButton = findViewById<Button>(R.id.logoutButton)
+        logoutButton.setOnClickListener {
+            FirebaseAuth.getInstance().signOut() // Log out the user
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish() // Close ProfileScreen
+        }
+
     }
 
     override fun onResume() {
@@ -181,5 +191,7 @@ class ProfileScreen : AppCompatActivity() {
             }
         }
     }
+
+
 
 }

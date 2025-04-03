@@ -1,10 +1,13 @@
 package com.dissonance.app.ui.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.dissonance.app.R
 import com.dissonance.app.databinding.ActivityLoginBinding
+import com.dissonance.app.screens.ProfileScreen
+import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : AppCompatActivity() {
 
@@ -29,6 +32,14 @@ class LoginActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         Log.d("Lifecycle", "LoginActivity: onStart()")
+
+        val user = FirebaseAuth.getInstance().currentUser
+        if (user != null) {
+            // Already logged in, go to Profile
+            val intent = Intent(this, ProfileScreen::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
 

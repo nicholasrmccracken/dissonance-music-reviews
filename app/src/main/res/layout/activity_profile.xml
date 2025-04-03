@@ -19,12 +19,13 @@
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="409dp"
-        android:layout_height="745dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <!-- Profile Info Section -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="183dp"
@@ -131,6 +132,7 @@
             </LinearLayout>
         </LinearLayout>
 
+        <!-- About Me Section -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="204dp"
@@ -171,10 +173,10 @@
                         android:text="Seem's Quite Empty..."
                         android:textColor="#779FE6" />
                 </LinearLayout>
-
             </LinearLayout>
         </LinearLayout>
 
+        <!-- Recent Activity Section -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="280dp"
@@ -205,33 +207,51 @@
                 android:name="com.dissonance.app.fragments.ReviewFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
-
         </LinearLayout>
 
+        <!-- Buttons Section -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="51dp"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="4dp">
+
+                <Button
+                    android:id="@+id/editAboutMe"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_spotify"
+                    android:text="Edit About Me"
+                    android:textColor="#68D96C" />
+
+                <Button
+                    android:id="@+id/editProfileBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_profile"
+                    android:text="Settings"
+                    android:textColor="#68D96C" />
+            </LinearLayout>
 
             <Button
-                android:id="@+id/editAboutMe"
-                android:layout_width="98dp"
+                android:id="@+id/logoutButton"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/btn_spotify"
-                android:text="Edit About Me"
-                android:textColor="#68D96C" />
-
-            <Button
-                android:id="@+id/editProfileBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_marginTop="4dp"
                 android:background="@drawable/btn_profile"
-                android:text="Setings"
-                android:textColor="#68D96C" />
+                android:text="Log Out"
+                android:textColor="#68D96C"
+                android:textAllCaps="false" />
         </LinearLayout>
 
+        <!-- Location -->
         <TextView
             android:id="@+id/locationText"
             android:layout_width="match_parent"
@@ -240,6 +260,7 @@
             android:textAlignment="center" />
     </LinearLayout>
 
+    <!-- Bottom Navigation -->
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/navbar_fragment_container"
         android:name="com.dissonance.app.fragments.NavbarFragment"
