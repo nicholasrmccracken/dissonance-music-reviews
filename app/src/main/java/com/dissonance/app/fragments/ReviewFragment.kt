@@ -1,6 +1,7 @@
 package com.dissonance.app.fragments
 
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -47,20 +48,26 @@ class ReviewFragment : Fragment() {
 
         val albumCover = view.findViewById<ImageView>(R.id.reviewImage)
         val ratingBar = view.findViewById<RatingBar>(R.id.ratingBar)
-        val albumTitle = view.findViewById<TextView>(R.id.reviewTitle)
-        val albumArtist = view.findViewById<TextView>(R.id.reviewArtist)
+        val albumReviewTitle = view.findViewById<TextView>(R.id.reviewTitle)
+        albumReviewTitle.ellipsize = TextUtils.TruncateAt.END
+
+        val albumTitle = view.findViewById<TextView>(R.id.reviewAlbumTitle)
+        albumTitle.ellipsize = TextUtils.TruncateAt.END
+
         val reviewContent = view.findViewById<TextView>(R.id.reviewContent)
+        reviewContent.ellipsize = TextUtils.TruncateAt.END
+
         val usernameTextView = view.findViewById<TextView>(R.id.usernameTextView) // Assume there's a TextView in your layout for this
 
 
         reviewViewModel.reviewListObserve.observe(viewLifecycleOwner) { reviews ->
             val review = reviews.firstOrNull()
             if (review != null) {
-                albumTitle.text = review.reviewTitle
-                albumArtist.text = review.artistName
+                albumTitle.text = review.albumTitle
+                albumReviewTitle.text = review.reviewTitle
                 reviewContent.text = review.reviewText
                 ratingBar.rating = review.rating.toFloat() / 2 // Normalize rating
-                usernameTextView.text = review.username
+                usernameTextView.text = "@${review.username}"
                 albumCover.load(review.albumCoverUrl) {
                     placeholder(android.R.drawable.ic_menu_report_image)
                     error(R.drawable.album_placeholder)
@@ -70,7 +77,7 @@ class ReviewFragment : Fragment() {
 
             } else {
                 albumTitle.text = "None"
-                albumArtist.text = "None"
+                albumReviewTitle.text = "None"
                 reviewContent.text = "Make your first review!"
                 ratingBar.rating = 0f
             }

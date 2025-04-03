@@ -51,7 +51,7 @@
                     android:fontFamily="monospace"
                     android:gravity="center|top"
                     android:text="Username"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#779FE6" />
             </LinearLayout>
 
             <LinearLayout
@@ -135,7 +135,7 @@
         <!-- About Me Section -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="204dp"
+            android:layout_height="186dp"
             android:background="#0029349B"
             android:orientation="vertical">
 
@@ -157,18 +157,18 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="129dp"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="129dp"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/aboutMe"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="129dp"
                         android:layout_weight="1"
                         android:text="Seem's Quite Empty..."
                         android:textColor="#779FE6" />
@@ -179,7 +179,7 @@
         <!-- Recent Activity Section -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="280dp"
+            android:layout_height="282dp"
             android:orientation="vertical">
 
             <TextView
@@ -206,7 +206,7 @@
                 android:id="@+id/fragmentContainerView2"
                 android:name="com.dissonance.app.fragments.ReviewFragment"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="222dp" />
         </LinearLayout>
 
         <!-- Buttons Section -->
@@ -247,8 +247,8 @@
                 android:layout_marginTop="4dp"
                 android:background="@drawable/btn_profile"
                 android:text="Log Out"
-                android:textColor="#68D96C"
-                android:textAllCaps="false" />
+                android:textAllCaps="false"
+                android:textColor="#68D96C" />
         </LinearLayout>
 
         <!-- Location -->
@@ -257,7 +257,8 @@
             android:layout_width="match_parent"
             android:layout_height="26dp"
             android:text="Location Not Set"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textColor="#779FE6" />
     </LinearLayout>
 
     <!-- Bottom Navigation -->

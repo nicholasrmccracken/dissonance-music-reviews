@@ -70,10 +70,11 @@
                     android:text="Title"
                     android:textColor="#779FE6"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:maxLines="1"/>
 
                 <TextView
-                    android:id="@+id/reviewArtist"
+                    android:id="@+id/reviewAlbumTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="10dp"
@@ -81,7 +82,8 @@
                     android:text="Artist"
                     android:textColor="#6577FA"
                     android:textSize="12sp"
-                    android:textStyle="italic" />
+                    android:textStyle="italic"
+                    android:maxLines="1"/>
 
                 <TextView
                     android:id="@+id/reviewContent"

@@ -120,35 +120,6 @@
         </LinearLayout>
 
         <View
-            android:id="@+id/view5"
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:background="#898888" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="84dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/editEmailText2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/change_password"
-                android:textColor="#FFFFFF" />
-
-            <EditText
-                android:id="@+id/editEmailBox3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:autofillHints="Enter new name"
-                android:background="@drawable/btn_profile"
-                android:hint="@string/enter_new_password"
-                android:inputType="textPersonName" />
-        </LinearLayout>
-
-        <View
             android:id="@+id/view4"
             android:layout_width="match_parent"
             android:layout_height="3dp"

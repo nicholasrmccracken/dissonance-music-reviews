@@ -5,6 +5,7 @@ import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.location.Location
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
@@ -23,6 +24,12 @@ import com.dissonance.app.viewmodel.SharedDiscogsViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import java.util.Locale
+import android.location.LocationManager
+import android.os.Looper
+import android.os.Build
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationResult
 
 class ProfileScreen : AppCompatActivity() {
 
@@ -49,6 +56,8 @@ class ProfileScreen : AppCompatActivity() {
         setContentView(R.layout.activity_profile) // Link to XML layout
 
         aboutMeTextView = findViewById<TextView>(R.id.aboutMe)
+        aboutMeTextView.ellipsize = TextUtils.TruncateAt.END
+        aboutMeTextView.maxLines = 6
         editProfileButton = findViewById<Button>(R.id.editProfileBtn)
         editAboutMeButton = findViewById<Button>(R.id.editAboutMe)
         usernameTextView = findViewById<TextView>(R.id.username)
@@ -133,7 +142,6 @@ class ProfileScreen : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-
         val user = FirebaseAuth.getInstance().currentUser
         if (user != null) {
             userViewModel.fetchUser(user.uid) // Refresh user data
@@ -152,7 +160,7 @@ class ProfileScreen : AppCompatActivity() {
             getUserCountry()
         } else {
             Log.d("Location", "Permission denied")
-            locationTextView.text = "Location unavailable"
+            locationTextView.text = "Location Denied"
         }
     }
 
@@ -173,6 +181,14 @@ class ProfileScreen : AppCompatActivity() {
             )
             return
         }
+        // Check if location is enabled
+        val locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
+        if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) &&
+            !locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+            // Location services are disabled
+            locationTextView.text = "Location services disabled"
+            return
+        }
         fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
             if (location != null) {
                 val geocoder = Geocoder(this, Locale.getDefault())
@@ -189,7 +205,5 @@ class ProfileScreen : AppCompatActivity() {
             }
         }
     }
-
-
 
 }

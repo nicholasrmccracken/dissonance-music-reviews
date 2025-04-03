@@ -46,9 +46,9 @@
 
         <EditText
             android:id="@+id/editAboutMeText"
-            android:layout_width="314dp"
-            android:layout_height="137dp"
-            android:layout_marginEnd="80dp"
+            android:layout_width="390dp"
+            android:layout_height="153dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginBottom="512dp"
             android:background="@color/primary"
             android:gravity="top"
