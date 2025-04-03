@@ -99,13 +99,11 @@ class ProfileScreen : AppCompatActivity() {
         editProfileButton.setOnClickListener {
             val intent = Intent(this, ProfileEditScreen::class.java)
             startActivity(intent) // Navigate to ProfileScreen
-            finish() // TODO REMOVE THIS LATER
         }
 
         editAboutMeButton.setOnClickListener {
             val intent = Intent(this, AboutMeEditScreen::class.java)
             startActivity(intent) // Navigate to edit about me
-            finish() // TODO REMOVE THIS LATER
         }
 
         // Embedded review fragment stuff

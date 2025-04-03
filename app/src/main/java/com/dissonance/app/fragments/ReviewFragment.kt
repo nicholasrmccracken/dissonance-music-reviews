@@ -18,14 +18,10 @@ import coil3.request.error
 import coil3.size.Scale
 import com.dissonance.app.R
 import com.dissonance.app.viewmodel.ReviewViewModel
-import com.dissonance.app.viewmodel.SharedDiscogsViewModel
-import com.dissonance.app.viewmodel.UserViewModel
-import com.google.firebase.auth.FirebaseAuth
 
 class ReviewFragment : Fragment() {
 
     private lateinit var reviewViewModel: ReviewViewModel
-    private lateinit var discogViewModel: SharedDiscogsViewModel
 
 
     private var userId: String? = null
@@ -48,7 +44,6 @@ class ReviewFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         reviewViewModel = ViewModelProvider(this).get(ReviewViewModel::class.java)
-        discogViewModel = ViewModelProvider(this).get(SharedDiscogsViewModel::class.java)
 
         val albumCover = view.findViewById<ImageView>(R.id.reviewImage)
         val ratingBar = view.findViewById<RatingBar>(R.id.ratingBar)
@@ -66,6 +61,12 @@ class ReviewFragment : Fragment() {
                 reviewContent.text = review.reviewText
                 ratingBar.rating = review.rating.toFloat() / 2 // Normalize rating
                 usernameTextView.text = review.username
+                albumCover.load(review.albumCoverUrl) {
+                    placeholder(android.R.drawable.ic_menu_report_image)
+                    error(R.drawable.album_placeholder)
+                    crossfade(true)
+                    scale(Scale.FILL)
+                }
 
             } else {
                 albumTitle.text = "None"
@@ -73,23 +74,9 @@ class ReviewFragment : Fragment() {
                 reviewContent.text = "Make your first review!"
                 ratingBar.rating = 0f
             }
-
-            // Call API search only after review data is available
-            if (albumTitle.text != "None" && albumArtist.text != "None") {
-                discogViewModel.searchAlbum(query = albumTitle.text.toString(), artist = albumArtist.text.toString())
-            }
         }
 
         refresh()
-
-        discogViewModel.searchResults.observe(viewLifecycleOwner) { album ->
-            albumCover.load(album.results[0].thumb) {
-                placeholder(android.R.drawable.ic_menu_report_image)
-                error(R.drawable.album_placeholder)
-                crossfade(true)
-                scale(Scale.FILL)
-            }
-        }
     }
 
     fun refresh() {
