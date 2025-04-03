@@ -1,17 +1,21 @@
 package com.dissonance.app.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dissonance.app.R
 import com.dissonance.app.adapter.SearchAdapter
+import com.dissonance.app.screens.CreateReviewScreen
 import com.dissonance.app.viewmodel.SharedDiscogsViewModel
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class SearchResultsFragment : Fragment() {
 
@@ -35,26 +39,57 @@ class SearchResultsFragment : Fragment() {
         val backButton = view.findViewById<Button>(R.id.backToSearchButton)
 
         searchAdapter = SearchAdapter { selectedAlbum ->
-            val bundle = Bundle().apply {
-                putInt("album_id", selectedAlbum.id)
-                putString("album_title", selectedAlbum.title)
-                putString("album_uri", selectedAlbum.uri)
-                putString("album_thumb", selectedAlbum.thumb)
-                putString("album_year", selectedAlbum.year)
-                putString("album_country", selectedAlbum.country)
-                putString("album_format", selectedAlbum.format?.joinToString(", "))
-                putString("album_label", selectedAlbum.label?.joinToString(", "))
-                putString("album_genre", selectedAlbum.genre?.joinToString(", "))
+            val context = requireContext()
+            val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_album_action, null)
+
+            dialogView.findViewById<TextView>(R.id.dialogMessage).text =
+                "What would you like to do?"
+
+            val dialog = MaterialAlertDialogBuilder(context)
+                .setView(dialogView)
+                .create()
+
+            dialogView.findViewById<Button>(R.id.viewDetailsButton).setOnClickListener {
+                val bundle = Bundle().apply {
+                    putInt("album_id", selectedAlbum.id)
+                    putString("album_title", selectedAlbum.title)
+                    putString("album_uri", selectedAlbum.uri)
+                    putString("album_thumb", selectedAlbum.thumb)
+                    putString("album_year", selectedAlbum.year)
+                    putString("album_country", selectedAlbum.country)
+                    putString("album_format", selectedAlbum.format?.joinToString(", "))
+                    putString("album_label", selectedAlbum.label?.joinToString(", "))
+                    putString("album_genre", selectedAlbum.genre?.joinToString(", "))
+                }
+
+                val fragment = AlbumDetailFragment().apply {
+                    arguments = bundle
+                }
+
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .addToBackStack(null)
+                    .commit()
+
+                dialog.dismiss()
             }
 
-            val fragment = AlbumDetailFragment().apply {
-                arguments = bundle
+            dialogView.findViewById<Button>(R.id.writeReviewButton).setOnClickListener {
+                val intent = Intent(context, CreateReviewScreen::class.java).apply {
+                    putExtra("albumId", selectedAlbum.id.toString())
+                    putExtra("albumTitle", selectedAlbum.title)
+                    putExtra("albumCoverUrl", selectedAlbum.thumb ?: "")
+                    putExtra("artistName", selectedAlbum.label?.joinToString(", ") ?: "Unknown Artist")
+                }
+                startActivity(intent)
+                dialog.dismiss()
             }
 
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, fragment)
-                .addToBackStack(null)
-                .commit()
+            dialogView.findViewById<Button>(R.id.cancelButton).setOnClickListener {
+                dialog.dismiss()
+            }
+
+            dialog.show()
         }
 
         recyclerView.apply {
@@ -68,7 +103,6 @@ class SearchResultsFragment : Fragment() {
 
             searchAdapter.submitList(uniqueResults)
         }
-
 
         backButton.setOnClickListener {
             parentFragmentManager.popBackStack()
