@@ -102,8 +102,8 @@ class LoginFragment : Fragment() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Toast.makeText(requireContext(), "Login Successful", Toast.LENGTH_SHORT).show()
-                    navigateToSearchFragment()
-                    //navigateToProfileScreen()
+                    //navigateToSearchFragment()
+                    navigateToProfileScreen()
                 } else {
                     Toast.makeText(requireContext(), "Authentication Failed", Toast.LENGTH_LONG).show()
                 }
