@@ -57,8 +57,8 @@ class ReviewViewModelTest {
     fun `getRecentReviews fetches reviews successfully`() {
         // Create mock data
         val mockReviews = listOf(
-            Review(id = "1", title = "Review 1", content = "Good album", rating = 4),
-            Review(id = "2", title = "Review 2", content = "Great album", rating = 5)
+            Review(userId = "1", albumTitle = "Review 1", rating = 4),
+            Review(userId = "2", albumTitle = "Review 2", rating = 5)
         )
 
         // Mock documents
