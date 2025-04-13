@@ -1,6 +1,7 @@
 package com.dissonance.app.ui.login
 
 
+import ForgotPasswordFragment
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -75,6 +76,14 @@ class LoginFragment : Fragment() {
                 .addToBackStack(null)
                 .commit()
         }
+
+        binding.forgotPasswordButton.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, ForgotPasswordFragment())
+                .addToBackStack(null)
+                .commit()
+        }
+
 
 
         // Observe Login Result

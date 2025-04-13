@@ -43,7 +43,6 @@ class SignupFragment : Fragment() {
             val email = binding.emailAddress.text.toString()
             val password = binding.password.text.toString()
             val confirmPassword = binding.confirmPassword.text.toString()
-            //val phoneNumber = binding.phoneNumber.text.toString()
 
             if (validateInputs(displayName, username, email, password, confirmPassword)) {
                 // 🔥 Step 1: Create User with Firebase Authentication
@@ -52,9 +51,25 @@ class SignupFragment : Fragment() {
                         if (task.isSuccessful) {
                             val user = auth.currentUser
                             user?.let {
+                                // 🔒 Step 2: Send Email Verification
+                                it.sendEmailVerification()
+                                    .addOnSuccessListener {
+                                        Toast.makeText(requireContext(), "Verification email sent to $email", Toast.LENGTH_LONG).show()
+                                    }
+                                    .addOnFailureListener { error ->
+                                        Toast.makeText(requireContext(), "Failed to send verification email: ${error.message}", Toast.LENGTH_LONG).show()
+                                    }
+
+                                // Step 3: Save user data to Firestore
                                 saveUserData(it.uid, displayName, username, email)
+
+                                // 🔒 Optional: prevent login before verification
+                                auth.signOut()
+                                Toast.makeText(requireContext(), "Please verify your email before logging in.", Toast.LENGTH_LONG).show()
+
+                                // Optionally go back to Login screen
+                                parentFragmentManager.popBackStack()
                             }
-                            navigateToProfileScreen()
                         } else {
                             Toast.makeText(requireContext(), "Registration Failed: ${task.exception?.message}", Toast.LENGTH_LONG).show()
                         }
@@ -68,8 +83,6 @@ class SignupFragment : Fragment() {
         }
     }
 
-
-    // Validate User Inputs
     private fun validateInputs(
         firstName: String, lastName: String, email: String,
         password: String, confirmPassword: String
@@ -87,19 +100,6 @@ class SignupFragment : Fragment() {
         }
 
         return true
-    }
-
-    // Navigate to ProfileScreen on Successful Sign Up
-    private fun navigateToProfileScreen() {
-        val intent = Intent(requireContext(), ProfileScreen::class.java)
-        startActivity(intent)
-        requireActivity().finish()
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        Log.d("Lifecycle", "SignupFragment: onDestroyView()")
-        _binding = null
     }
 
     private fun saveUserData(uid: String, displayName: String, username: String, email: String) {
@@ -123,5 +123,17 @@ class SignupFragment : Fragment() {
             .addOnFailureListener { e ->
                 Toast.makeText(requireContext(), "Error Saving Data: ${e.message}", Toast.LENGTH_LONG).show()
             }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Log.d("Lifecycle", "SignupFragment: onDestroyView()")
+        _binding = null
+    }
+
+    private fun navigateToProfileScreen() {
+        val intent = Intent(requireContext(), ProfileScreen::class.java)
+        startActivity(intent)
+        requireActivity().finish()
     }
 }
