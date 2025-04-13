@@ -24,8 +24,6 @@ class NavbarFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        Log.d("Lifecycle", "NavbarFragment: onViewCreated() called")
-
         super.onViewCreated(view, savedInstanceState)
 
         val bottomNavbar = view.findViewById<BottomNavigationView>(R.id.bottom_navbar)
@@ -49,13 +47,13 @@ class NavbarFragment : Fragment() {
                     }
                     true
                 }
-                R.id.nav_create_review -> {
-                    if (currentActivity != "CreateReviewScreen") {
-                    val intent = Intent(requireActivity(), CreateReviewScreen::class.java)
-                    startActivity(intent)
-                    }
-                    true
-                }
+//                R.id.nav_create_review -> {
+//                    if (currentActivity != "CreateReviewScreen") {
+//                    val intent = Intent(requireActivity(), CreateReviewScreen::class.java)
+//                    startActivity(intent)
+//                    }
+//                    true
+//                }
 //                R.id.nav_charts -> {
 //                    if (currentActivity != "ChartsScreen") {
 //                    val intent = Intent(requireActivity(), ChartsScreen::class.java)
@@ -80,7 +78,7 @@ class NavbarFragment : Fragment() {
         return when (currentActivity) {
             "HomeScreen" -> R.id.nav_home
             "SearchScreen" -> R.id.nav_search
-            "CreateReviewScreen" -> R.id.nav_create_review
+//            "CreateReviewScreen" -> R.id.nav_create_review
 //            "ChartsScreen" -> R.id.nav_charts
             "ProfileScreen" -> R.id.nav_profile
             else -> R.id.nav_home

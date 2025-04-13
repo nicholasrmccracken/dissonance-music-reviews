@@ -6,7 +6,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.dissonance.app.R
 import com.dissonance.app.databinding.ActivityLoginBinding
-import com.dissonance.app.screens.ProfileScreen
+import com.dissonance.app.screens.HomeScreen
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : AppCompatActivity() {
@@ -35,8 +35,7 @@ class LoginActivity : AppCompatActivity() {
 
         val user = FirebaseAuth.getInstance().currentUser
         if (user != null) {
-            // Already logged in, go to Profile
-            val intent = Intent(this, ProfileScreen::class.java)
+            val intent = Intent(this, HomeScreen::class.java)
             startActivity(intent)
             finish()
         }

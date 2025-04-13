@@ -8,10 +8,10 @@
         android:id="@+id/nav_search"
         android:icon="@drawable/ic_search"
         android:title="@string/search" />
-    <item
-        android:id="@+id/nav_create_review"
-        android:icon="@drawable/ic_create"
-        android:title="Create Review" />
+<!--    <item-->
+<!--        android:id="@+id/nav_create_review"-->
+<!--        android:icon="@drawable/ic_create"-->
+<!--        android:title="Create Review" />-->
 <!--    <item-->
 <!--        android:id="@+id/nav_charts"-->
 <!--        android:icon="@drawable/ic_charts"-->
