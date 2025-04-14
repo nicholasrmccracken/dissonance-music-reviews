@@ -75,11 +75,15 @@ class SearchResultsFragment : Fragment() {
             }
 
             dialogView.findViewById<Button>(R.id.writeReviewButton).setOnClickListener {
+                val (artistName, albumTitle) = selectedAlbum.title.split(" - ", limit = 2).let {
+                    if (it.size == 2) it[0] to it[1] else "Unknown Artist" to selectedAlbum.title
+                }
+
                 val intent = Intent(context, CreateReviewScreen::class.java).apply {
                     putExtra("albumId", selectedAlbum.id.toString())
-                    putExtra("albumTitle", selectedAlbum.title)
+                    putExtra("albumTitle", albumTitle)
                     putExtra("albumCoverUrl", selectedAlbum.thumb ?: "")
-                    putExtra("artistName", selectedAlbum.label?.joinToString(", ") ?: "Unknown Artist")
+                    putExtra("artistName", artistName)
                 }
                 startActivity(intent)
                 dialog.dismiss()

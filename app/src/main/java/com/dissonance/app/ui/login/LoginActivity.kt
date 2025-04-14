@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.dissonance.app.R
 import com.dissonance.app.databinding.ActivityLoginBinding
+import com.dissonance.app.fragments.LoginFragment
 import com.dissonance.app.screens.ProfileScreen
 import com.google.firebase.auth.FirebaseAuth
 
