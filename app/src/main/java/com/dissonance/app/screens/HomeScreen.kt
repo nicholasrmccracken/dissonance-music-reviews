@@ -1,6 +1,7 @@
 package com.dissonance.app.screens
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dissonance.app.R
 import com.dissonance.app.adapter.ReviewAdapter
+import com.dissonance.app.utils.NetworkUtils.isInternetAvailable
 import com.dissonance.app.viewmodel.ReviewViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -28,11 +30,14 @@ class HomeScreen : AppCompatActivity() {
         recyclerView.setHasFixedSize(true)
         recyclerView.itemAnimator = null
 
-//        reviewViewModel.reviewListObserve.observe(this) { reviews ->
-//            reviewAdapter.submitList(reviews)
-//        }
-//
-//        reviewViewModel.getRecentReviews(1000)
+        if (!isInternetAvailable(this)) {
+            Toast.makeText(this, "Offline mode: showing cached data.", Toast.LENGTH_SHORT).show()
+        }
+
+        //            reviewViewModel.reviewListObserve.observe(this) { reviews ->
+        //                reviewAdapter.submitList(reviews)
+        //            }
+        //            reviewViewModel.getRecentReviews(1000)
 
         lifecycleScope.launch {
             reviewViewModel.reviewFlow.collectLatest { pagingData ->

@@ -22,7 +22,6 @@ class ReviewPagingSource(private val db: FirebaseFirestore) : PagingSource<Docum
 
             val snapshot = query.get().await()
             val reviews = snapshot.documents.mapNotNull { it.toObject(Review::class.java) }
-
             val nextKey = snapshot.documents.lastOrNull()
 
             LoadResult.Page(

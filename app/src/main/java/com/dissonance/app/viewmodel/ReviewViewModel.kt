@@ -12,7 +12,7 @@ import com.dissonance.app.data.model.Review
 import com.dissonance.app.data.ReviewPagingSource
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
-import java.util.Date
+import com.google.firebase.firestore.Source
 
 class ReviewViewModel(
     private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
@@ -22,7 +22,7 @@ class ReviewViewModel(
     val reviewListObserve: LiveData<List<Review>> get() = reviewList
 
     // Function to fetch the review with the lowest timestamp for the given user
-    fun getRecentReviews(limit: Int, userId: String? = null) {
+    fun getRecentReviews(limit: Int = 50, userId: String? = null) {
         var query = db.collection("reviews")
             .orderBy("timestamp", Query.Direction.DESCENDING)
             .limit(limit.toLong())
@@ -70,6 +70,7 @@ class ReviewViewModel(
         val sum = reviews.sumOf { it.rating.toDouble() }
         return (sum / reviews.size).toFloat()
     }
+
 
     val reviewFlow = Pager(PagingConfig(pageSize = 25)) {
         ReviewPagingSource(db)
