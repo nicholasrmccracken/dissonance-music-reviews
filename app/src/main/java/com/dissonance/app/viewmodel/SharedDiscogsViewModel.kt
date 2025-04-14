@@ -88,4 +88,31 @@ class SharedDiscogsViewModel() : ViewModel() {
             _batchSearchResults.value = resultsMap
         }
     }
+
+    // Validate search parameters
+    fun validateSearchParams(query: String, artist: String): Boolean {
+        return query.isNotBlank() && artist.isNotBlank()
+    }
+
+    // Filter empty or invalid album pairs
+    fun filterValidAlbumPairs(albums: List<Pair<String, String>>): List<Pair<String, String>> {
+        return albums.filter { (title, artist) ->
+            title.isNotBlank() && artist.isNotBlank()
+        }
+    }
+
+    // Get most common genre from batch search results
+    fun getMostCommonGenre(searchResults: Map<Pair<String, String>, DiscogSearchModel>): String? {
+        val genreCounts = mutableMapOf<String, Int>()
+
+        searchResults.forEach { (_, result) ->
+            result.results?.forEach { item ->
+                item.genre?.forEach { genre ->
+                    genreCounts[genre] = (genreCounts[genre] ?: 0) + 1
+                }
+            }
+        }
+
+        return genreCounts.entries.maxByOrNull { it.value }?.key
+    }
 }

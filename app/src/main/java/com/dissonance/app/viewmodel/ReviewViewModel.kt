@@ -12,10 +12,12 @@ import com.dissonance.app.data.model.Review
 import com.dissonance.app.data.ReviewPagingSource
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import java.util.Date
 
-class ReviewViewModel: ViewModel() {
+class ReviewViewModel(
+    private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
+) : ViewModel() {
 
-    private val db = FirebaseFirestore.getInstance()
     private val reviewList = MutableLiveData<List<Review>>()
     val reviewListObserve: LiveData<List<Review>> get() = reviewList
 
@@ -39,6 +41,34 @@ class ReviewViewModel: ViewModel() {
                 reviewList.value = emptyList()
                 Log.d("getRecentReview", "Error fetching reviews")
             }
+    }
+
+    fun validateReview(review: Review): Boolean {
+        // Check if required fields are present
+        if (review.userId.isNullOrBlank() || review.username.isNullOrBlank()) {
+            return false
+        }
+
+        // Validate content length max 9000
+        if (review.reviewText.length > 9000) {
+            return false
+        }
+
+        // Validate rating is between 1-5
+        if (review.rating < 1 || review.rating > 10) {
+            return false
+        }
+
+        return true
+    }
+
+    fun calculateAverageRating(reviews: List<Review>): Float {
+        if (reviews.isEmpty()) {
+            return 0.0f
+        }
+
+        val sum = reviews.sumOf { it.rating.toDouble() }
+        return (sum / reviews.size).toFloat()
     }
 
     val reviewFlow = Pager(PagingConfig(pageSize = 25)) {
