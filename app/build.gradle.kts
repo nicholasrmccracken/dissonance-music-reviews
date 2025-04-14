@@ -52,7 +52,9 @@ android {
     }
 }
 
+
 dependencies {
+
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -65,10 +67,27 @@ dependencies {
     implementation(libs.firebase.auth.ktx)
     implementation(libs.play.services.location)
     implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.espresso.intents)
+
     testImplementation(libs.junit)
+
     androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    // androidTestImplementation(libs.androidx.espresso.core)
     implementation(libs.androidx.lifecycle.viewmodel.ktx.v262)
+
+    testImplementation("androidx.arch.core:core-testing:2.2.0")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:5.4.0")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+
+//    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation("com.adevinta.android:barista:4.3.0")
+    debugImplementation("androidx.fragment:fragment-testing:1.8.6")
+
+    androidTestImplementation("androidx.test:core:1.5.0")
+    androidTestImplementation("androidx.test:runner:1.5.2")
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+
 
     // Paging
     implementation("androidx.paging:paging-runtime:3.2.1")
