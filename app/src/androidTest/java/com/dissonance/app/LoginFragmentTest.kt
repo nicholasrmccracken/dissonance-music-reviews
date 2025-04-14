@@ -6,7 +6,7 @@ import androidx.test.filters.MediumTest
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
-import com.dissonance.app.ui.login.LoginFragment
+import com.dissonance.app.fragments.LoginFragment
 import org.junit.Test
 import org.junit.runner.RunWith
 

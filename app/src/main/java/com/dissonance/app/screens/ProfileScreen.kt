@@ -25,11 +25,7 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import java.util.Locale
 import android.location.LocationManager
-import android.os.Looper
-import android.os.Build
-import com.google.android.gms.location.LocationCallback
-import com.google.android.gms.location.LocationRequest
-import com.google.android.gms.location.LocationResult
+import com.dissonance.app.utils.NetworkUtils.isInternetAvailable
 
 class ProfileScreen : AppCompatActivity() {
 
@@ -98,8 +94,15 @@ class ProfileScreen : AppCompatActivity() {
         })
 
         // If location flag from sharedpref set then fetch location (country) else make that dissapear
-        if(locationFlag){
-            locationPermissionRequest.launch(android.Manifest.permission.ACCESS_FINE_LOCATION)
+        // If location flag from sharedpref set then fetch location (country) else make that disappear
+        if (locationFlag) {
+            // First check if we have network connectivity before trying to get location
+            if (isInternetAvailable(this)) {
+                locationPermissionRequest.launch(android.Manifest.permission.ACCESS_FINE_LOCATION)
+            } else {
+                locationTextView.text = "Location unavailable - no network"
+                Log.d("Location", "Cannot get location: No network connection")
+            }
         } else {
             locationTextView.visibility = TextView.GONE
         }

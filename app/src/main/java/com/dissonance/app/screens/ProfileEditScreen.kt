@@ -1,14 +1,19 @@
 package com.dissonance.app.screens
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Switch
+import android.widget.Toast
 import androidx.activity.viewModels
 import com.dissonance.app.R
+import com.dissonance.app.utils.NetworkUtils.isInternetAvailable
 import com.dissonance.app.viewmodel.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
 
@@ -21,7 +26,6 @@ class ProfileEditScreen : AppCompatActivity() {
     private lateinit var submitEmailButton: Button
     private lateinit var submitUsernameButton: Button
     private lateinit var backButton: Button
-    private lateinit var discogsDebugButton: Button
     private lateinit var toggleLocationSwitch: Switch
 
 
@@ -55,13 +59,21 @@ class ProfileEditScreen : AppCompatActivity() {
         submitUsernameButton.setOnClickListener {
             val newName = editName.text.toString()
             if (newName.isNotEmpty()) {
-                // userId = "testUser2"
                 if (user != null) {
-                    userViewModel.updateUserName(user.uid, newName)
-                    Log.d("ProfileEditScreen", "Name updated to: $newName")
+                    if (isInternetAvailable(this)) {
+                        userViewModel.updateUserName(user.uid, newName)
+                        Log.d("ProfileEditScreen", "Name updated to: $newName")
+                        Toast.makeText(this, "Username updated successfully", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this, "No internet connection available. Please try again when connected.", Toast.LENGTH_LONG).show()
+                        Log.d("ProfileEditScreen", "Network connectivity issue - couldn't update username")
+                    }
                 } else {
                     Log.d("Fetch UID", "Fetch Current User UID Failure")
+                    Toast.makeText(this, "Authentication error. Please log in again.", Toast.LENGTH_SHORT).show()
                 }
+            } else {
+                Toast.makeText(this, "Username cannot be empty", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -69,13 +81,21 @@ class ProfileEditScreen : AppCompatActivity() {
         submitEmailButton.setOnClickListener {
             val newEmail = editEmail.text.toString()
             if (newEmail.isNotEmpty()) {
-                // val userId = "testUser2"
                 if (user != null) {
-                    userViewModel.updateUserEmail(user.uid, newEmail)
-                    Log.d("ProfileEditScreen", "Email updated to: $newEmail")
+                    if (isInternetAvailable(this)) {
+                        userViewModel.updateUserEmail(user.uid, newEmail)
+                        Log.d("ProfileEditScreen", "Email updated to: $newEmail")
+                        Toast.makeText(this, "Email updated successfully", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this, "No internet connection available. Please try again when connected.", Toast.LENGTH_LONG).show()
+                        Log.d("ProfileEditScreen", "Network connectivity issue - couldn't update email")
+                    }
                 } else {
                     Log.d("Fetch UID", "Fetch Current User UID Failure")
+                    Toast.makeText(this, "Authentication error. Please log in again.", Toast.LENGTH_SHORT).show()
                 }
+            } else {
+                Toast.makeText(this, "Email cannot be empty", Toast.LENGTH_SHORT).show()
             }
         }
 
