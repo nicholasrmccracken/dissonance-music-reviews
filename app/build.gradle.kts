@@ -68,33 +68,23 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx.v262)
 
-    // Import the Firebase BoM
+    // Paging
+    implementation("androidx.paging:paging-runtime:3.2.1")
+    implementation("androidx.paging:paging-common-ktx:3.2.1")
+
+    // Firebase BoM
     implementation(platform("com.google.firebase:firebase-bom:33.10.0"))
-
     implementation("com.google.firebase:firebase-auth-ktx:22.0.0")
-
-    // TODO: Add the dependencies for Firebase products you want to use
-    // When using the BoM, don't specify versions in Firebase dependencies
     implementation("com.google.firebase:firebase-analytics")
-
     implementation("com.google.firebase:firebase-firestore-ktx:24.7.1")
-
-    // Add the dependencies for any other desired Firebase products
-    // https://firebase.google.com/docs/android/setup#available-libraries
-
 
     // Discogs
     implementation("com.squareup.retrofit2:retrofit:2.11.0")
     implementation("com.squareup.retrofit2:converter-gson:2.11.0")
 
-
     // Coil
     implementation("io.coil-kt.coil3:coil:3.1.0")
     implementation("io.coil-kt.coil3:coil-network-okhttp:3.1.0")
-
-    implementation(libs.androidx.lifecycle.viewmodel.ktx.v262)
-
 }
-
-

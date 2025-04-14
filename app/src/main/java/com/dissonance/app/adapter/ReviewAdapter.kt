@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil3.load
@@ -16,7 +17,7 @@ import com.dissonance.app.R
 import com.dissonance.app.data.model.Review
 import com.google.android.material.imageview.ShapeableImageView
 
-class ReviewAdapter : ListAdapter<Review, ReviewAdapter.ReviewViewHolder>(DiffCallback) {
+class ReviewAdapter : PagingDataAdapter<Review, ReviewAdapter.ReviewViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReviewViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -25,8 +26,7 @@ class ReviewAdapter : ListAdapter<Review, ReviewAdapter.ReviewViewHolder>(DiffCa
     }
 
     override fun onBindViewHolder(holder: ReviewViewHolder, position: Int) {
-        val review = getItem(position)
-        holder.bind(review)
+        getItem(position)?.let { holder.bind(it) }
     }
 
     inner class ReviewViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -44,6 +44,7 @@ class ReviewAdapter : ListAdapter<Review, ReviewAdapter.ReviewViewHolder>(DiffCa
                 error(R.drawable.album_placeholder)
                 crossfade(true)
                 scale(Scale.FILL)
+                size(100)
             }
             albumTitle.text = item.albumTitle
             albumArtist.text = item.artistName
@@ -55,12 +56,10 @@ class ReviewAdapter : ListAdapter<Review, ReviewAdapter.ReviewViewHolder>(DiffCa
     }
 
     companion object DiffCallback : DiffUtil.ItemCallback<Review>() {
-        override fun areItemsTheSame(oldItem: Review, newItem: Review): Boolean {
-            return oldItem.userId == newItem.userId && oldItem.albumId == newItem.albumId
-        }
+        override fun areItemsTheSame(oldItem: Review, newItem: Review): Boolean =
+            oldItem.userId == newItem.userId && oldItem.albumId == newItem.albumId
 
-        override fun areContentsTheSame(oldItem: Review, newItem: Review): Boolean {
-            return oldItem == newItem
-        }
+        override fun areContentsTheSame(oldItem: Review, newItem: Review): Boolean =
+            oldItem == newItem
     }
 }

@@ -4,9 +4,12 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.dissonance.app.data.UserRepository
+import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.cachedIn
 import com.dissonance.app.data.model.Review
-import com.dissonance.app.data.model.User
+import com.dissonance.app.data.ReviewPagingSource
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 
@@ -37,4 +40,8 @@ class ReviewViewModel: ViewModel() {
                 Log.d("getRecentReview", "Error fetching reviews")
             }
     }
+
+    val reviewFlow = Pager(PagingConfig(pageSize = 25)) {
+        ReviewPagingSource(db)
+    }.flow.cachedIn(viewModelScope)
 }

@@ -3,11 +3,14 @@ package com.dissonance.app.screens
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dissonance.app.R
 import com.dissonance.app.adapter.ReviewAdapter
 import com.dissonance.app.viewmodel.ReviewViewModel
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 class HomeScreen : AppCompatActivity() {
 
@@ -22,11 +25,19 @@ class HomeScreen : AppCompatActivity() {
         val recyclerView = findViewById<RecyclerView>(R.id.review_recycler)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = reviewAdapter
+        recyclerView.setHasFixedSize(true)
+        recyclerView.itemAnimator = null
 
-        reviewViewModel.reviewListObserve.observe(this) { reviews ->
-            reviewAdapter.submitList(reviews)
+//        reviewViewModel.reviewListObserve.observe(this) { reviews ->
+//            reviewAdapter.submitList(reviews)
+//        }
+//
+//        reviewViewModel.getRecentReviews(1000)
+
+        lifecycleScope.launch {
+            reviewViewModel.reviewFlow.collectLatest { pagingData ->
+                reviewAdapter.submitData(pagingData)
+            }
         }
-
-        reviewViewModel.getRecentReviews(20)
     }
 }
